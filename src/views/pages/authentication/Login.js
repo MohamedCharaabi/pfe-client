@@ -6,14 +6,13 @@ import useJwt from '@src/auth/jwt/useJwt'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { toast, Slide } from 'react-toastify'
-import { handleLogin, handlepfeLogin } from '@store/actions/auth'
+import { handleLogin } from '@store/actions/auth'
 import { AbilityContext } from '@src/utility/context/Can'
 import { Link, useHistory } from 'react-router-dom'
 import InputPasswordToggle from '@components/input-password-toggle'
 import { getHomeRouteForLoggedInUser, isObjEmpty } from '@utils'
-import { Facebook, Twitter, Mail, GitHub, HelpCircle, Coffee } from 'react-feather'
+import { Coffee } from 'react-feather'
 import {
-  Alert,
   Row,
   Col,
   CardTitle,
@@ -23,8 +22,7 @@ import {
   FormGroup,
   Label,
   CustomInput,
-  Button,
-  UncontrolledTooltip
+  Button
 } from 'reactstrap'
 
 import '@styles/base/pages/page-auth.scss'
@@ -39,7 +37,7 @@ const ToastContent = ({ name, role }) => (
       </div>
     </div>
     <div className='toastify-body'>
-      <span>You have successfully logged in as an {role} user to Vuexy. Now you can start to explore. Enjoy!</span>
+      <span>You have successfully logged in as an {role} user to PFE-CIMS!</span>
     </div>
   </Fragment>
 )
@@ -49,7 +47,7 @@ const Login = props => {
   const ability = useContext(AbilityContext)
   const dispatch = useDispatch()
   const history = useHistory()
-  const [email, setEmail] = useState('kalilo@yahoo.fr')
+  const [email, setEmail] = useState('medch@yahoo.fr')
   const [password, setPassword] = useState('12345')
 
   const { register, errors, handleSubmit } = useForm()
@@ -151,32 +149,9 @@ const Login = props => {
         <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
           <Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
             <CardTitle tag='h2' className='font-weight-bold mb-1'>
-              Welcome to Vuexy! 👋
+              Welcome to PFE-CIMS! 👋
             </CardTitle>
             <CardText className='mb-2'>Please sign-in to your account and start the adventure</CardText>
-            <Alert color='primary'>
-              <div className='alert-body font-small-2'>
-                <p>
-                  <small className='mr-50'>
-                    <span className='font-weight-bold'>Admin:</span> admin@demo.com | admin
-                  </small>
-                </p>
-                <p>
-                  <small className='mr-50'>
-                    <span className='font-weight-bold'>Client:</span> client@demo.com | client
-                  </small>
-                </p>
-              </div>
-              <HelpCircle
-                id='login-tip'
-                className='position-absolute'
-                size={18}
-                style={{ top: '10px', right: '10px' }}
-              />
-              <UncontrolledTooltip target='login-tip' placement='left'>
-                This is just for ACL demo purpose.
-              </UncontrolledTooltip>
-            </Alert>
             <Form className='auth-login-form mt-2' onSubmit={handleSubmit(onSubmit)}>
               <FormGroup>
                 <Label className='form-label' for='login-email'>
@@ -220,29 +195,6 @@ const Login = props => {
                 Sign in
               </Button.Ripple>
             </Form>
-            <p className='text-center mt-2'>
-              <span className='mr-25'>New on our platform?</span>
-              <Link to='/register'>
-                <span>Create an account</span>
-              </Link>
-            </p>
-            <div className='divider my-2'>
-              <div className='divider-text'>or</div>
-            </div>
-            <div className='auth-footer-btn d-flex justify-content-center'>
-              <Button.Ripple color='facebook'>
-                <Facebook size={14} />
-              </Button.Ripple>
-              <Button.Ripple color='twitter'>
-                <Twitter size={14} />
-              </Button.Ripple>
-              <Button.Ripple color='google'>
-                <Mail size={14} />
-              </Button.Ripple>
-              <Button.Ripple className='mr-0' color='github'>
-                <GitHub size={14} />
-              </Button.Ripple>
-            </div>
           </Col>
         </Col>
       </Row>

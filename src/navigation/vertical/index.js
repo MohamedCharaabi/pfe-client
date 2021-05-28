@@ -17,4 +17,10 @@ import chartsAndMaps from './charts-maps'
 
 // ** Merge & Export
 //  'OLD EXPORT'  export default [...dashboards, ...apps, ...pages, ...uiElements, ...forms, ...tables, ...chartsAndMaps, ...others]
-export default [...dashboards, ...pages, ...demmandes, ...themes, ...departments, ...directions, ...divisions, ...services, ...uiElements, ...forms, ...tables, ...chartsAndMaps, ...others]
+export default
+    [
+        ...dashboards,
+        // ...pages,
+        ...demmandes, ...themes, ...departments, ...directions, ...divisions, ...services,
+        ...uiElements, ...forms, ...tables, ...chartsAndMaps, ...others
+    ]

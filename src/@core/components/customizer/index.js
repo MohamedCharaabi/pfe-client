@@ -263,7 +263,7 @@ const Customizer = props => {
                 theme={selectThemeColors}
                 className='react-select'
                 classNamePrefix='select'
-                defaultValue={transitionOptions[0]}
+                defaultValue={transitionOptions[3]}
                 value={transitionValue}
                 options={transitionOptions}
                 isClearable={false}
@@ -274,8 +274,8 @@ const Customizer = props => {
         </div>
 
         <hr />
-
-        <div className='px-2'>
+        {/* Layout toggle (vertical/horizontal) */}
+        {/* <div className='px-2'>
           <p className='font-weight-bold'>Menu Layout</p>
           <FormGroup className='mb-2'>
             <div className='d-flex align-items-center'>
@@ -323,9 +323,9 @@ const Customizer = props => {
               />
             </div>
           </FormGroup>
-        </div>
+        </div> 
 
-        <hr />
+        <hr /> */}
 
         <div className='px-2'>
           {layout !== 'HorizontalLayout' ? (

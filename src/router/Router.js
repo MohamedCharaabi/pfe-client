@@ -22,6 +22,8 @@ import BlankLayout from '@layouts/BlankLayout'
 import VerticalLayout from '@src/layouts/VerticalLayout'
 import HorizontalLayout from '@src/layouts/HorizontalLayout'
 import AddRequest from '../views/pages/others/AddRequest'
+// import HomePage from '../views/landing/pages'
+
 
 const Router = () => {
   // ** Hooks
@@ -194,6 +196,8 @@ const Router = () => {
           path='/'
           render={() => {
             return isUserLoggedIn() ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />
+
+
           }}
         />
         {/* Not Auth Route */}

@@ -14,7 +14,7 @@ export default [
     children: [
       {
         id: 'departments',
-        title: 'departmnets',
+        title: 'Departmnets',
         icon: <Circle size={12} />,
         navLink: '/departments'
       },

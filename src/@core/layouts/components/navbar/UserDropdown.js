@@ -54,7 +54,7 @@ const UserDropdown = () => {
           <Mail size={14} className='mr-75' />
           <span className='align-middle'>Inbox</span>
         </DropdownItem>
-        <DropdownItem tag={Link} to='/apps/todo'>
+        {/* <DropdownItem tag={Link} to='/apps/todo'>
           <CheckSquare size={14} className='mr-75' />
           <span className='align-middle'>Tasks</span>
         </DropdownItem>
@@ -75,12 +75,13 @@ const UserDropdown = () => {
           <HelpCircle size={14} className='mr-75' />
           <span className='align-middle'>FAQ</span>
         </DropdownItem>
+        */}
         <DropdownItem tag={Link} to='/login' onClick={() => dispatch(handleLogout())}>
           <Power size={14} className='mr-75' />
           <span className='align-middle'>Logout</span>
         </DropdownItem>
       </DropdownMenu>
-    </UncontrolledDropdown>
+    </UncontrolledDropdown >
   )
 }
 

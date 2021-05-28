@@ -24,14 +24,16 @@ const NavbarUser = props => {
 
   return (
     <ul className='nav navbar-nav align-items-center ml-auto'>
-      <IntlDropdown />
+      {/* change language dropdown */}
+      {/* <IntlDropdown /> */}
       <NavItem className='d-none d-lg-block'>
         <NavLink className='nav-link-style'>
           <ThemeToggler />
         </NavLink>
       </NavItem>
       <NavbarSearch />
-      <CartDropdown />
+      {/* Cart Icon  */}
+      {/* <CartDropdown /> */}
       <NotificationDropdown />
       <UserDropdown />
     </ul>
