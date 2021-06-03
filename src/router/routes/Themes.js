@@ -6,6 +6,10 @@ const DemmandesRoutes = [
     component: lazy(() => import('../../views/themes/reactstrap'))
   },
   {
+    path: '/editTheme/:id',
+    component: lazy(() => import('../../views/themes/reactstrap/EditTheme'))
+  },
+  {
     path: '/datatables/basic',
     component: lazy(() => import('../../views/tables/data-tables/basic'))
   },

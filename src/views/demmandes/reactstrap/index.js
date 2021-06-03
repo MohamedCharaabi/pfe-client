@@ -16,6 +16,8 @@ import TableResponsive from './TableResponsive'
 import TableHoverAnimation from './TableHoverAnimation'
 import Breadcrumbs from '@components/breadcrumbs'
 import Card from '@components/card-snippet'
+import InvoiceList from '@src/views/apps/list'
+
 import {
   tableBasic,
   tableDark,
@@ -39,7 +41,14 @@ const Tables = () => {
   return (
     <Fragment>
       {/* <Breadcrumbs breadCrumbTitle='Reactstrap Tables' breadCrumbParent='Forms & Tables' breadCrumbActive='Tables' /> */}
-      <Row>
+      <Row className='match-height'>
+        <Col xs='12'>
+          <InvoiceList />
+        </Col>
+      </Row>
+
+
+      {/* <Row>
         <Col sm='12'>
           <Card title='Requests'
             // code={tableBasic}
@@ -50,6 +59,7 @@ const Tables = () => {
         </Col>
 
       </Row>
+  */}
     </Fragment>
   )
 }

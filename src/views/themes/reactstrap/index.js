@@ -4,7 +4,10 @@ import prism from 'prismjs'
 import TableBasic from './TableBasic'
 
 import Card from '@components/card-snippet'
+import DataTableWithButtons from './TableWithButtons'
 
+// ** Styles
+import '@styles/react/libs/tables/react-dataTable-component.scss'
 
 const Tables = () => {
   useEffect(() => {
@@ -17,7 +20,9 @@ const Tables = () => {
       <Row>
         <Col sm='12'>
           <Card title='Themes' noBody>
-            <TableBasic />
+            {/* <TableBasic /> */}
+            <DataTableWithButtons />
+
           </Card>
         </Col>
 
