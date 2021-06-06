@@ -1,33 +1,34 @@
 import classnames from 'classnames'
 import Avatar from '@components/avatar'
-import { TrendingUp, User, Box, DollarSign } from 'react-feather'
+import { TrendingUp, Send, Globe, Layout } from 'react-feather'
 import { Card, CardHeader, CardTitle, CardBody, CardText, Row, Col, Media } from 'reactstrap'
 
-const StatsCard = ({ cols }) => {
+const StatsCard = ({ cols, props }) => {
+  console.log(props)
   const data = [
     {
-      title: '230k',
-      subtitle: 'Sales',
+      title: props.depCount,
+      subtitle: 'Departments',
       color: 'light-primary',
+      icon: <Layout size={24} />
+    },
+    {
+      title: props.dirCount,
+      subtitle: 'Directions',
+      color: 'light-info',
+      icon: <Send size={24} />
+    },
+    {
+      title: props.divCount,
+      subtitle: 'Diviisons',
+      color: 'light-danger',
       icon: <TrendingUp size={24} />
     },
     {
-      title: '8.549k',
-      subtitle: 'Customers',
-      color: 'light-info',
-      icon: <User size={24} />
-    },
-    {
-      title: '1.423k',
-      subtitle: 'Products',
-      color: 'light-danger',
-      icon: <Box size={24} />
-    },
-    {
-      title: '$9745',
-      subtitle: 'Revenue',
+      title: props.serCount,
+      subtitle: 'Services',
       color: 'light-success',
-      icon: <DollarSign size={24} />
+      icon: <Globe size={24} />
     }
   ]
 
@@ -57,8 +58,7 @@ const StatsCard = ({ cols }) => {
   return (
     <Card className='card-statistics'>
       <CardHeader>
-        <CardTitle tag='h4'>Statistics</CardTitle>
-        <CardText className='card-text font-small-2 mr-25 mb-0'>Updated 1 month ago</CardText>
+        <CardTitle tag='h4'>Nombre totale</CardTitle>
       </CardHeader>
       <CardBody className='statistics-body'>
         <Row>{renderData()}</Row>

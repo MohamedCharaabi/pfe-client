@@ -1,4 +1,5 @@
-import { useContext } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import axios from 'axios'
 import { Row, Col } from 'reactstrap'
 import CompanyTable from './CompanyTable'
 import { ThemeColors } from '@src/utility/context/ThemeColors'
@@ -20,6 +21,27 @@ const EcommerceDashboard = () => {
   const { colors } = useContext(ThemeColors),
     trackBgColor = '#e9ecef'
 
+  const [statData, setStatData] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+
+  async function loadStats() {
+
+    await axios.get('https://pfe-cims.herokuapp.com/stat')
+      .then(res => {
+        setStatData(res.data)
+        setIsLoading(false)
+      })
+      .catch(error => alert(`errror ==> ${error.message}`))
+  }
+
+  useEffect(() => {
+    loadStats()
+  }, [])
+
+
+  if (isLoading) return <span></span>
+
   return (
     <div id='dashboard-ecommerce'>
       <Row className='match-height'>
@@ -27,7 +49,7 @@ const EcommerceDashboard = () => {
           <CardMedal />
         </Col>
         <Col xl='8' md='6' xs='12'>
-          <StatsCard cols={{ xl: '3', sm: '6' }} />
+          <StatsCard cols={{ xl: '3', sm: '6' }} props={statData.levelsCount} />
         </Col>
       </Row>
       <Row className='match-height'>
@@ -37,10 +59,10 @@ const EcommerceDashboard = () => {
               <OrdersBarChart warning={colors.warning.main} />
             </Col>
             <Col lg='6' md='3' xs='6'>
-              <ProfitLineChart info={colors.info.main} />
+              <ProfitLineChart info={colors.info.main} props={statData.monthRequest} />
             </Col>
             <Col lg='12' md='6' xs='12'>
-              <Earnings success={colors.success.main} />
+              <Earnings success={colors.success.main} props={statData.topTheme} />
             </Col>
           </Row>
         </Col>

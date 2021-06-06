@@ -1,4 +1,4 @@
-import { Server, Grid, Circle } from 'react-feather'
+import { Server, Globe, Circle } from 'react-feather'
 
 export default [
   // {
@@ -10,7 +10,7 @@ export default [
   {
     id: 'services',
     title: 'Services',
-    icon: <Grid size={20} />,
+    icon: <Globe size={20} />,
     children: [
       {
         id: 'dtBasic',
@@ -20,7 +20,14 @@ export default [
       },
       {
         id: 'dtAdvance',
-        title: 'Add Services',
+        title: 'Ajout Services',
+        icon: <Circle size={12} />,
+        navLink: '/addService'
+      },
+
+      {
+        id: 'dtAdvance',
+        title: 'Ajout Directeur',
         icon: <Circle size={12} />,
         navLink: '/addService'
       }

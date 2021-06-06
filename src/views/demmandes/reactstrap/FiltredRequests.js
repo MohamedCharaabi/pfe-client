@@ -1,11 +1,17 @@
 import { Fragment, useEffect, useState } from 'react'
 import axios from 'axios'
 import { MoreVertical, Edit, Trash } from 'react-feather'
-import { Table, Row, Col, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
+import {
+  Table, Row, Col, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle, Modal, ModalHeader,
+  ModalBody, Input, ModalFooter,
+  Button,
+  Label
+} from 'reactstrap'
 import prism from 'prismjs'
 import Card from '@components/card-snippet'
 import { isUserLoggedIn } from '@utils'
 import { handleError, handleSuccess } from '../../exports/SweetAlerts'
+
 
 const FiltredRequest = () => {
 
@@ -13,10 +19,15 @@ const FiltredRequest = () => {
   const [demandes, setDemandes] = useState([])
   const [userData, setUserData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [refuseRemarque, setrefuseRemarque] = useState('')
 
+
+  const [modal, setModal] = useState(false)
+  const [unmountOnClose, setUnmountOnClose] = useState(true)
 
   async function loadDemandes() {
     const user = JSON.parse(localStorage.getItem('userData'))
+    setUserData(user)
     await axios.get(`https://pfe-cims.herokuapp.com/request/filter/${user.rolePer}/${user.Dep}/${user.Dir || 0}/${user.Div || 0}/${user.Ser || 0}`)
       .then(res => {
         setDemandes(res.data)
@@ -38,10 +49,26 @@ const FiltredRequest = () => {
 
   }
   async function acceptDemande(id, etatDem, name, demmande) {
-    await axios.patch(`https://pfe-cims.herokuapp.com/request/accept/${id}`, { etatDem, name, demmande, message: `accepted by ${user.fullName}` })
+    await axios.patch(`https://pfe-cims.herokuapp.com/request/accept/${id}`, { etatDem, name, demmande, message: `accepted by ${userData.fullName}` })
       .then(res => handleSuccess({ props: { title: 'Request Accepted' } }))
       .catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
   }
+  async function refuseDemande(id, rmsqDem) {
+    await axios.patch(`https://pfe-cims.herokuapp.com/request/refuse/${id}`, { rmsqDem, message: `refused by ${userData.fullName}` })
+      .then(res => {
+        handleSuccess({ props: { title: 'Request Refussed' } })
+        setModal(!modal)
+      })
+      .catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
+  }
+
+  const toggle = () => setModal(!modal)
+  const changeUnmountOnClose = e => {
+    console.log(e.target.value)
+    // let value = e.target.value;
+    setUnmountOnClose(JSON.parse(value))
+  }
+
   if (isLoading) {
     return <span>Loading...</span>
   }
@@ -68,6 +95,7 @@ const FiltredRequest = () => {
               </thead>
               <tbody>
                 {demandes.map(demmande => {
+                  if (demmande.confDem !== 'yes') return null
                   return < tr key={demmande._id} >
                     <td>
                       {/* <img className='mr-75' src={angular} alt='angular' height='20' width='20' /> */}
@@ -93,16 +121,30 @@ const FiltredRequest = () => {
                         <DropdownMenu right>
                           <DropdownItem href='/' onClick={e => {
                             e.preventDefault()
-                            acceptDemande(demande._id, demande.etatDem, demande.name, demande)
+                            acceptDemande(demmande._id, demmande.etatDem, demmande.name, demmande)
                           }}>
-                            <Edit className='mr-50' size={15} /> <span className='align-middle'>Accept</span>
+                            <Edit className='mr-50' size={15} /> <span className='align-middle'>Accepter</span>
                           </DropdownItem>
-                          <DropdownItem href='/' onClick={e => e.preventDefault()}>
-                            <Trash className='mr-50' size={15} /> <span className='align-middle'>Refuse</span>
+                          <DropdownItem onClick={toggle}>
+                            <Trash className='mr-50' size={15} /> <span className='align-middle'>Refuser</span>
                           </DropdownItem>
                         </DropdownMenu>
                       </UncontrolledDropdown>
                     </td>
+
+                    <Modal isOpen={modal} toggle={toggle} unmountOnClose={unmountOnClose}>
+                      <ModalHeader toggle={toggle}>Remarque</ModalHeader>
+                      <ModalBody>
+                        <Input type="textarea" placeholder="Pourquoi?" rows={5} onChange={e => setrefuseRemarque(e.target.value)} />
+                      </ModalBody>
+                      <ModalFooter>
+                        <Button color="danger" onClick={e => {
+                          e.preventDefault()
+                          refuseDemande(demmande._id, refuseRemarque)
+                        }}>Refuser</Button>{' '}
+                        <Button color="secondary" onClick={toggle}>Annuler</Button>
+                      </ModalFooter>
+                    </Modal>
 
                   </tr>
 
@@ -116,6 +158,8 @@ const FiltredRequest = () => {
         </Col>
 
       </Row>
+
+
     </Fragment >
 
   )

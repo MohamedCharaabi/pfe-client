@@ -16,7 +16,7 @@ const data = {
     statistics: '6,24k',
     series: [
       {
-        data: [0, 20, 5, 30, 15, 45]
+        data: [0, 20, 5, 30, 50, 50]
       }
     ]
   },

@@ -1,4 +1,4 @@
-import { Server, Grid, Circle } from 'react-feather'
+import { Server, TrendingUp, Circle } from 'react-feather'
 
 export default [
   // {
@@ -10,7 +10,7 @@ export default [
   {
     id: 'divisions',
     title: 'Divisions',
-    icon: <Grid size={20} />,
+    icon: <TrendingUp size={20} />,
     children: [
       {
         id: 'dtBasic',
@@ -20,7 +20,13 @@ export default [
       },
       {
         id: 'dtAdvance',
-        title: 'Add Division',
+        title: 'Ajoput Division',
+        icon: <Circle size={12} />,
+        navLink: '/addDivision'
+      },
+      {
+        id: 'dtAdvance',
+        title: 'Ajout Directeur',
         icon: <Circle size={12} />,
         navLink: '/addDivision'
       }

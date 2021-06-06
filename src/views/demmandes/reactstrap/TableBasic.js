@@ -45,6 +45,7 @@ const TableBasic = () => {
       </thead>
       <tbody>
         {demandes.map(demmande => {
+          if (demmande.confDem !== 'yes') return null
           return <tr key={demmande._id}>
             <td>
               {/* <img className='mr-75' src={angular} alt='angular' height='20' width='20' /> */}

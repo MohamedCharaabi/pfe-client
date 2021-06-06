@@ -186,18 +186,10 @@ const DataTableWithButtons = () => {
   return (
     <Fragment>
       <Card>
-        <CardHeader className='flex-md-row flex-column align-md-items-center align-items-start border-bottom'>
-          {/* <CardTitle tag='h4'>Themes</CardTitle> */}
-          <div></div>
-          <div className='d-flex mt-md-0 mt-1'>
-            <Button className='ml-2' color='primary' onClick={handleModal}>
-              <Plus size={15} />
-              <span className='align-middle ml-50'>Add Theme</span>
-            </Button>
-          </div>
-        </CardHeader>
-        <Row className='justify-content-end mx-0'>
-          <Col className='d-flex align-items-center justify-content-end mt-1' md='6' sm='12'>
+
+
+        <Row className='justify-content-between mx-0'>
+          <Col className='d-flex align-items-center justify-content-start mt-1' md='6' sm='12'>
             <Label className='mr-1' for='search-input'>
               Search
             </Label>
@@ -210,6 +202,12 @@ const DataTableWithButtons = () => {
               onChange={handleFilter}
             />
           </Col>
+          <div className='d-flex mt-md-0 mt-1'>
+            <Button className='ml-2' color='primary' onClick={handleModal}>
+              <Plus size={15} />
+              <span className='align-middle ml-50'>Add Theme</span>
+            </Button>
+          </div>
         </Row>
         <DataTable
           noHeader

@@ -43,7 +43,9 @@ const Tables = () => {
       {/* <Breadcrumbs breadCrumbTitle='Reactstrap Tables' breadCrumbParent='Forms & Tables' breadCrumbActive='Tables' /> */}
       <Row className='match-height'>
         <Col xs='12'>
-          <InvoiceList />
+          {/* <InvoiceList /> */}
+
+          <TableBasic />
         </Col>
       </Row>
 

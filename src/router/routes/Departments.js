@@ -14,6 +14,10 @@ const DepartmentRoutes = [
     component: lazy(() => import('../../views/deps/reactstrap/EditDepartment'))
   },
   {
+    path: '/ajoutDirector',
+    component: lazy(() => import('../../views/deps/reactstrap/AjoutDirector'))
+  },
+  {
     path: '/datatables/basic',
     component: lazy(() => import('../../views/tables/data-tables/basic'))
   },

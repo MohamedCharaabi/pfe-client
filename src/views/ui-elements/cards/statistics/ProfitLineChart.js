@@ -2,12 +2,22 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import TinyChartStats from '@components/widgets/stats/TinyChartStats'
 
-const ProfitLineChart = ({ info }) => {
+const ProfitLineChart = ({ info, props }) => {
   const [data, setData] = useState(null)
 
   useEffect(() => {
     axios.get('/card/card-statistics/profit-line-chart').then(res => setData(res.data))
   }, [])
+
+  const series = {
+    title: 'theme par mois',
+    statistics: '6,24k',
+    series: [
+      {
+        data: props.map(th => th.nubr)
+      }
+    ]
+  }
 
   const options = {
     chart: {
@@ -42,7 +52,7 @@ const ProfitLineChart = ({ info }) => {
     colors: [info],
     series: [
       {
-        data: [0, 20, 5, 30, 15, 45]
+        data: props.map(th => th.nubr)
       }
     ],
     markers: {
@@ -97,7 +107,7 @@ const ProfitLineChart = ({ info }) => {
       height={70}
       type='line'
       options={options}
-      title={data.title}
+      title={'theme par mois'}
       stats={data.statistics}
       series={data.series}
     />

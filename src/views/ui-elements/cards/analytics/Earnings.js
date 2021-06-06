@@ -1,7 +1,8 @@
 import Chart from 'react-apexcharts'
 import { Card, CardTitle, CardText, CardBody, Row, Col } from 'reactstrap'
 
-const Earnings = ({ success }) => {
+const Earnings = ({ success, props }) => {
+
   const options = {
     chart: {
       toolbar: {
@@ -13,9 +14,9 @@ const Earnings = ({ success }) => {
     },
     legend: { show: false },
     comparedResult: [2, -3, 8],
-    labels: ['App', 'Service', 'Product'],
+    labels: props.map(th => th._id),
     stroke: { width: 0 },
-    colors: ['#28c76f66', '#28c76f33', success],
+    colors: ['#6059c6', '#7F7AD1', '#BFBCE8', '#7F7AD1', success],
     grid: {
       padding: {
         right: -20,
@@ -35,17 +36,10 @@ const Earnings = ({ success }) => {
             value: {
               offsetY: -15,
               formatter(val) {
-                return `${parseInt(val)} %`
-              }
-            },
-            total: {
-              show: true,
-              offsetY: 15,
-              label: 'App',
-              formatter(w) {
-                return '53%'
+                return `${parseInt(val)}`
               }
             }
+
           }
         }
       }
@@ -91,8 +85,8 @@ const Earnings = ({ success }) => {
       <CardBody>
         <Row>
           <Col xs='6'>
-            <CardTitle className='mb-1'>Earnings</CardTitle>
-            <div className='font-small-2'>This Month</div>
+            <CardTitle className='mb-1'>Top Themes</CardTitle>
+            <div className='font-small-2'>Ce mois</div>
             <h5 className='mb-1'>$4055.56</h5>
             <CardText className='text-muted font-small-2'>
               <span className='font-weight-bolder'>68.2%</span>
@@ -100,7 +94,7 @@ const Earnings = ({ success }) => {
             </CardText>
           </Col>
           <Col xs='6'>
-            <Chart options={options} series={[53, 16, 31]} type='donut' height={120} />
+            <Chart options={options} series={props.map(th => th.count)} type='donut' height={120} />
           </Col>
         </Row>
       </CardBody>

@@ -1,10 +1,10 @@
-import { Server, Grid, Circle } from 'react-feather'
+import { File } from 'react-feather'
 
 export default [
   {
     id: 'demmandesReactstrap',
     title: 'Demmandes',
-    icon: <Server size={20} />,
+    icon: <File size={20} />,
     navLink: '/demmandes/reactstrap'
   }
   // {

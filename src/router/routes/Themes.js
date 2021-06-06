@@ -1,9 +1,17 @@
 import { lazy } from 'react'
 
 const DemmandesRoutes = [
+  // {
+  //   path: '/themes/reactstrap',
+  //   component: lazy(() => import('../../views/themes/reactstrap'))
+  // },
   {
     path: '/themes/reactstrap',
-    component: lazy(() => import('../../views/themes/reactstrap'))
+    component: lazy(() => import('../../views/themes/reactstrap')),
+    meta: {
+      action: 'read',
+      resource: 'auth'
+    }
   },
   {
     path: '/editTheme/:id',

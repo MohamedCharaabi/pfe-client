@@ -1,4 +1,4 @@
-import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield } from 'react-feather'
+import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield, File, Home, Type } from 'react-feather'
 export default [
   {
     header: 'Misc'
@@ -11,10 +11,11 @@ export default [
     resource: 'ACL',
     navLink: '/access-control'
   },
+  //client sidebar
   {
     id: 'dashboard',
     title: 'Dashboard',
-    icon: <Circle size={12} />,
+    icon: <Home size={12} />,
     action: 'read',
     resource: 'auth',
     navLink: '/dashboard/analy'
@@ -22,11 +23,21 @@ export default [
   {
     id: 'perdemandes',
     title: 'Demmandes',
-    icon: <Circle size={12} />,
+    icon: <File size={12} />,
     action: 'read',
     resource: 'auth',
     navLink: '/requests'
   },
+  {
+    id: 'themesReactstrap',
+    title: 'Themes',
+    icon: <Type size={20} />,
+    action: 'read',
+    resource: 'auth',
+    navLink: '/themes/reactstrap'
+  },
+
+  //end Client sidebar
   {
     id: 'menuLevels',
     title: 'Menu Levels',

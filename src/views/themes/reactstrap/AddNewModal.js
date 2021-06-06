@@ -45,6 +45,7 @@ const AddNewModal = ({ open, handleModal, load }) => {
   const CloseBtn = <X className='cursor-pointer' size={15} onClick={handleModal} />
 
   return (
+
     <Modal
       isOpen={open}
       // toggle={handleModal}

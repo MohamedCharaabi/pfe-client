@@ -1,10 +1,10 @@
-import { Server, Grid, Circle } from 'react-feather'
+import { Type, Grid, Circle } from 'react-feather'
 
 export default [
   {
     id: 'themesReactstrap',
     title: 'Themes',
-    icon: <Server size={20} />,
+    icon: <Type size={20} />,
     navLink: '/themes/reactstrap'
   }
   // {
