@@ -28,7 +28,7 @@ export default [
         id: 'dtAdvance',
         title: 'Ajout Directeur',
         icon: <Circle size={12} />,
-        navLink: '/addDirection'
+        navLink: '/dir/ajoutdirector'
       }
     ]
   }

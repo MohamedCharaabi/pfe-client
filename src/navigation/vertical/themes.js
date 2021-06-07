@@ -1,6 +1,12 @@
-import { Type, Grid, Circle } from 'react-feather'
+import { Type, Grid, Circle, AlertCircle } from 'react-feather'
 
 export default [
+  {
+    id: 'alertctstrap',
+    title: 'Alerts',
+    icon: <AlertCircle size={20} />,
+    navLink: '/alerts'
+  },
   {
     id: 'themesReactstrap',
     title: 'Themes',

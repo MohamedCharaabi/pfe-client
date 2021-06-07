@@ -8,25 +8,20 @@ import { Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle
 
 const TableBasic = () => {
 
-  const [directions, setDirections] = useState([])
-  const [personnels, setPersonnels] = useState([])
+  const [alerts, setAlerts] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
-  async function loadDirections() {
-    await axios.get('https://pfe-cims.herokuapp.com/dir')
-      .then(res => setDirections(res.data))
+  async function loadAlerts() {
+    await axios.get('https://pfe-cims.herokuapp.com/alert')
+      .then(res => {
+        setAlerts(res.data)
+        setIsLoading(false)
+      })
       .catch(error => alert(error.message))
   }
 
-  async function loadPersonnels() {
-    await axios.get('https://pfe-cims.herokuapp.com/new/users')
-      .then(res => setPersonnels(res.data))
-      .catch(error => alert(`error!:: ${error}`))
-
-  }
-
   useEffect(() => {
-    loadDirections()
-    loadPersonnels()
+    loadAlerts()
   }, [])
 
   async function deleteDirection(id) {
@@ -36,30 +31,28 @@ const TableBasic = () => {
       .catch(error => alert(error.message))
   }
 
+  if (isLoading) return <span></span>
+
   return (
     <Table responsive>
       <thead>
         <tr>
-          <th>Nom</th>
-          <th>Department</th>
           <th>Modirateur</th>
+          <th>Contenu</th>
+          <th>date</th>
 
         </tr>
       </thead>
       <tbody>
-        {directions.map(direction => {
+        {alerts.map(alert => {
           return <tr>
             <td>
               {/* <img className='mr-75' src={angular} alt='angular' height='20' width='20' /> */}
-              <span className='align-middle font-weight-bold'>{direction.name}</span>
+              <span className='align-middle font-weight-bold'>{alert.by}</span>
             </td>
-            <td>{direction.dep_name}</td>
+            <td>{alert.content}</td>
             <td>
-              {personnels.map(personnel => {
-                if (personnel.Dir === direction.name && personnel.rolePer === 'dir') {
-                  return personnel.fullName
-                }
-              })}
+              {alert.writedAt}
             </td>
             <td>
               <UncontrolledDropdown>
@@ -67,7 +60,7 @@ const TableBasic = () => {
                   <MoreVertical size={15} />
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <Link to={`/editDirection/${direction._id}`}>
+                  <Link to={``}>
                     <DropdownItem >
                       <Edit className='mr-50' size={15} /> <span className='align-middle'>Edit</span>
                     </DropdownItem>

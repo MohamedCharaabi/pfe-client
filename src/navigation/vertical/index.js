@@ -1,5 +1,5 @@
 // ** Navigation sections imports
-// import apps from './apps'
+import apps from './apps'
 import pages from './pages'
 import forms from './forms'
 import tables from './tables'
@@ -20,7 +20,8 @@ import chartsAndMaps from './charts-maps'
 export default
     [
         ...dashboards,
-        // ...pages,
+        ...pages,
+        ...apps,
         ...demmandes, ...themes, ...departments, ...directions, ...divisions, ...services,
         ...uiElements, ...forms, ...tables, ...chartsAndMaps, ...others
     ]

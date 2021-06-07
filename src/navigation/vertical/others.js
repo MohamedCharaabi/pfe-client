@@ -1,4 +1,4 @@
-import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield, File, Home, Type } from 'react-feather'
+import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield, File, Home, Type, AlertCircle } from 'react-feather'
 export default [
   {
     header: 'Misc'
@@ -18,7 +18,7 @@ export default [
     icon: <Home size={12} />,
     action: 'read',
     resource: 'auth',
-    navLink: '/dashboard/analy'
+    navLink: '/dashboard/ecommerce'
   },
   {
     id: 'perdemandes',
@@ -36,8 +36,17 @@ export default [
     resource: 'auth',
     navLink: '/themes/reactstrap'
   },
+  {
+    id: 'alertReactstrap',
+    title: 'Alert',
+    icon: <AlertCircle size={20} />,
+    action: 'read',
+    resource: 'auth',
+    navLink: '/alertForm'
+  },
 
   //end Client sidebar
+
   {
     id: 'menuLevels',
     title: 'Menu Levels',

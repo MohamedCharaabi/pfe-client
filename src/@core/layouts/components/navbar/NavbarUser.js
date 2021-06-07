@@ -4,12 +4,19 @@ import CartDropdown from './CartDropdown'
 import UserDropdown from './UserDropdown'
 import NavbarSearch from './NavbarSearch'
 import NotificationDropdown from './NotificationDropdown'
-
+import { useState, useEffect } from 'react'
 // ** Third Party Components
 import { Sun, Moon } from 'react-feather'
 import { NavItem, NavLink } from 'reactstrap'
 
 const NavbarUser = props => {
+  const [userData, setUserData] = useState()
+
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('userData'))
+    setUserData(user)
+  }, [])
   // ** Props
   const { skin, setSkin } = props
 
@@ -22,6 +29,7 @@ const NavbarUser = props => {
     }
   }
 
+  if (!userData) return null
   return (
     <ul className='nav navbar-nav align-items-center ml-auto'>
       {/* change language dropdown */}
@@ -34,7 +42,9 @@ const NavbarUser = props => {
       <NavbarSearch />
       {/* Cart Icon  */}
       {/* <CartDropdown /> */}
-      <NotificationDropdown />
+      {
+        userData.role === 'admin' ? <NotificationDropdown /> : null
+      }
       <UserDropdown />
     </ul>
   )

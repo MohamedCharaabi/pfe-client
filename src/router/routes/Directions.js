@@ -6,8 +6,13 @@ const DepartmentRoutes = [
     component: lazy(() => import('../../views/dir/reactstrap'))
   },
   {
+
     path: '/addDirection',
     component: lazy(() => import('../../views/dir/reactstrap/AddDirection'))
+  },
+  {
+    path: '/dir/ajoutdirector',
+    component: lazy(() => import('../../views/dir/reactstrap/AjoutDirector'))
   },
   {
     path: '/editDirection/:dir',

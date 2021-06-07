@@ -30,36 +30,36 @@ const colourOptions = [
     { value: 'Themes', label: 'Themes' }
 
 ]
-const AjoutDirector = () => {
+const AjoutDirDirector = () => {
     // const { dep } = useParams()
     const [depForm, setDepForm] = useState({})
-    const [departments, setDepartments] = useState()
-    const [formData, setFormData] = useState({ fullName: '', email: '', rolePer: 'dep', Dep: '', Dir: '', Div: '', Ser: '' })
+    const [directions, setDirections] = useState()
+    const [formData, setFormData] = useState({ fullName: '', email: '', rolePer: 'dir', Dep: '', Dir: '', Div: '', Ser: '' })
     const [isLoading, setIsLoading] = useState(false)
-    const [depOptions, setDepOptions] = useState()
+    const [dirOptions, setDirOptions] = useState()
 
-    async function loadDepartments() {
-        await axios.get('https://pfe-cims.herokuapp.com/dep')
-            .then(res => setDepartments(res.data))
+    async function loadDirections() {
+        await axios.get('https://pfe-cims.herokuapp.com/dir')
+            .then(res => setDirections(res.data))
             .catch(error => alert(error.message))
     }
 
     useEffect(() => {
-        loadDepartments()
+        loadDirections()
 
     }, [])
 
-    function getDepartments() {
+    function getDirections() {
         const options = []
-        departments.forEach(dep => {
-            options.push({ value: dep.name, label: dep.name })
+        directions.forEach(dir => {
+            options.push({ value: dir.name, label: dir.name })
         })
-        setDepOptions(options)
+        setDirOptions(options)
     }
     async function submit() {
         // event.preventDefault()
 
-        // console.log(depForm)
+        console.log(formData)
         // if (depForm.name) {
         //     await axios.patch(`https://pfe-cims.herokuapp.com/dep/${dep}`, depForm)
         //         .then(res => console.log(res.data))
@@ -71,7 +71,7 @@ const AjoutDirector = () => {
                     "Access-Control-Allow-Origin": "*"
                 }
             })
-            .then(async (res) => handleSuccess({ props: { title: 'Department updated successfully' } })
+            .then(async (res) => handleSuccess({ props: { title: 'Directeur ajouter' } })
             ).catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
     }
 
@@ -90,18 +90,21 @@ const AjoutDirector = () => {
                     <Row>
 
                         <Col className='mb-1' lg='3' md='6' sm='12'>
-                            <Label>Department</Label>
+                            <Label>Directions</Label>
                             <Select
                                 theme={selectThemeColors}
                                 className='react-select'
                                 classNamePrefix='select'
-                                defaultValue={colourOptions[0]}
-                                options={depOptions}
-                                onFocus={getDepartments}
+                                defaultValue={colourOptions[1]}
+                                options={dirOptions}
+                                onFocus={getDirections}
                                 onChange={val => {
+
+                                    const dep = directions.find(e => e.name === val.value).dep_name
                                     setFormData({
                                         ...formData,
-                                        Dep: val.value
+                                        Dir: val.value,
+                                        Dep: dep
                                     })
                                     // setDirOptions([])
                                     // setDivOptions([])
@@ -155,4 +158,4 @@ const AjoutDirector = () => {
     )
 }
 
-export default AjoutDirector
+export default AjoutDirDirector
