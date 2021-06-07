@@ -3,13 +3,16 @@ import classnames from 'classnames'
 import { useForm, Controller } from 'react-hook-form'
 import { Button, Media, Label, Row, Col, Input, FormGroup, Alert, Form } from 'reactstrap'
 import { isUserLoggedIn } from '@utils'
+import axios from 'axios'
 // import { Image, CloudinaryContext } from 'cloudinary-react'
 
 const GeneralTabs = ({ data }) => {
   const { register, errors, handleSubmit, control, setValue, trigger } = useForm()
-
+  const [selectedImage, setSelectedImage] = useState()
   const [avatar, setAvatar] = useState(data.avatar ? data.avatar : '')
   const [userData, setUserData] = useState(null)
+  const [formData, setFormData] = useState({ fullName: '', email: '' })
+
 
   //** ComponentDidMount
   useEffect(() => {
@@ -27,8 +30,36 @@ const GeneralTabs = ({ data }) => {
     }
     reader.readAsDataURL(files[0])
   }
+  const uploadImage = async () => {
 
-  const onSubmit = data => trigger()
+    const data = new FormData()
+    data.append("file", avatar)
+    data.append("upload_preset", "default")
+    data.append("cloud_name", "isetz")
+
+    console.log(avatar)
+    console.log(data)
+    fetch("  https://api.cloudinary.com/v1_1/isetz/image/upload",
+      { method: "post", body: data })
+      .then(resp => resp.json())
+      .then(async (data) => {
+
+        await axios.patch(`https://pfe-cims.herokuapp.com/new/${userData._id}`, { avatar: data.url, fullName: formData.fullName, email: formData.email })
+          .then(res => console.log(res.data))
+          .catch(err => console.log(err))
+
+      })
+      .catch(err => console.log(err))
+
+  }
+
+  const onSubmit = data => {
+
+    if (trigger()) {
+      uploadImage()
+    }
+  }
+
 
   if (!userData) return <span>  </span>
 
@@ -39,7 +70,9 @@ const GeneralTabs = ({ data }) => {
           <Media object className='rounded mr-50' src={avatar} alt='Generic placeholder image' height='80' width='80' />
         </Media>
         <Media className='mt-75 ml-1' body>
-          <Button.Ripple tag={Label} className='mr-75' size='sm' color='primary'>
+          <Button.Ripple tag={Label} className='mr-75' size='sm' color='primary'
+          // onChange={e => setSelectedImage(e.target.files[0])}
+          >
             Upload
             <Input type='file' onChange={onChange} hidden accept='image/*' />
           </Button.Ripple>
@@ -62,7 +95,7 @@ const GeneralTabs = ({ data }) => {
                 name='username'
                 placeholder='Username'
                 innerRef={register({ required: true })}
-                onChange={e => setValue('username', e.target.value)}
+                onChange={e => setFormData({ ...formData, fullName: e.target.value })}
                 className={classnames({
                   'is-invalid': errors.username
                 })}
@@ -81,7 +114,8 @@ const GeneralTabs = ({ data }) => {
                 name='email'
                 placeholder='Email'
                 innerRef={register({ required: true })}
-                onChange={e => setValue('email', e.target.value)}
+                onChange={e => setFormData({ ...formData, email: e.target.value })}
+
                 className={classnames({
                   'is-invalid': errors.email
                 })}
