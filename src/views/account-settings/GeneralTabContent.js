@@ -1,12 +1,44 @@
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState, useEffect, useContext } from 'react'
 import classnames from 'classnames'
 import { useForm, Controller } from 'react-hook-form'
 import { Button, Media, Label, Row, Col, Input, FormGroup, Alert, Form } from 'reactstrap'
-import { isUserLoggedIn } from '@utils'
+import { handleLogin } from '@store/actions/auth'
+import { AbilityContext } from '@src/utility/context/Can'
+import { isUserLoggedIn, getHomeRouteForLoggedInUser, isObjEmpty } from '@utils'
+import { toast, Slide } from 'react-toastify'
+import { Link, useHistory } from 'react-router-dom'
+import InputPasswordToggle from '@components/input-password-toggle'
+import Avatar from '@components/avatar'
+import { Coffee } from 'react-feather'
+
+
+import { useDispatch } from 'react-redux'
+
 import axios from 'axios'
 // import { Image, CloudinaryContext } from 'cloudinary-react'
+import { handleError, handleSuccess } from '../exports/SweetAlerts'
+
+const ToastContent = ({ name, role }) => (
+  <Fragment>
+    <div className='toastify-header'>
+      <div className='title-wrapper'>
+        <Avatar size='sm' color='success' icon={<Coffee size={12} />} />
+        <h6 className='toast-title font-weight-bold'>Welcome, {name}</h6>
+      </div>
+    </div>
+    <div className='toastify-body'>
+      <span>You have successfully logged in as an {role} user to PFE-CIMS!</span>
+    </div>
+  </Fragment>
+)
+
 
 const GeneralTabs = ({ data }) => {
+
+  const ability = useContext(AbilityContext)
+  const dispatch = useDispatch()
+  const history = useHistory()
+
   const { register, errors, handleSubmit, control, setValue, trigger } = useForm()
   const [selectedImage, setSelectedImage] = useState()
   const [avatar, setAvatar] = useState(data.avatar ? data.avatar : '')
@@ -18,6 +50,8 @@ const GeneralTabs = ({ data }) => {
   useEffect(() => {
     if (isUserLoggedIn() !== null) {
       setUserData(JSON.parse(localStorage.getItem('userData')))
+      setAvatar(JSON.parse(localStorage.getItem('userData')).avatar)
+      setFormData({ fullName: JSON.parse(localStorage.getItem('userData')).fullName, email: JSON.parse(localStorage.getItem('userData')).email })
     }
   }, [])
 
@@ -30,6 +64,40 @@ const GeneralTabs = ({ data }) => {
     }
     reader.readAsDataURL(files[0])
   }
+
+  const reLogin = async ({ data }) => {
+    if (isObjEmpty(errors)) {
+      // useJwt
+      //   .login({ email, password })
+      await axios.post('https://pfe-cims.herokuapp.com/new/login', { email: formData.email, password: userData.password }, {
+        headers: {
+          'Content-Type': 'Application/json'
+        },
+        withCredentials: true
+      })
+        .then(res => {
+          console.log(res.data)
+          const data = { ...res.data.userData, accessToken: res.data.accessToken, refreshToken: res.data.refreshToken }
+          // const data = { ...res.data, accessToken: res.data.token, refreshToken: res.data.token }
+
+          dispatch(handleLogin(data))
+          // dispatch(handlepfeLogin(data))
+
+          ability.update(res.data.userData.ability)
+          // ability.update(res.data.role)
+
+          history.push(getHomeRouteForLoggedInUser(data.role))
+          // history.push(getHomeRouteForLoggedInUser('admin'))
+
+          toast.success(
+            <ToastContent name={data.fullName || data.username || 'John Doe'} role={data.role || 'admin'} />,
+            { transition: Slide, hideProgressBar: true, autoClose: 2000 }
+          )
+        })
+        .catch(err => alert(`error => ${err.message}`))
+    }
+  }
+
   const uploadImage = async () => {
 
     const data = new FormData()
@@ -38,18 +106,23 @@ const GeneralTabs = ({ data }) => {
     data.append("cloud_name", "isetz")
 
     console.log(avatar)
-    console.log(data)
+    console.log(formData)
+
+
     fetch("  https://api.cloudinary.com/v1_1/isetz/image/upload",
       { method: "post", body: data })
       .then(resp => resp.json())
       .then(async (data) => {
 
         await axios.patch(`https://pfe-cims.herokuapp.com/new/${userData._id}`, { avatar: data.url, fullName: formData.fullName, email: formData.email })
-          .then(res => console.log(res.data))
-          .catch(err => console.log(err))
+          .then(res => {
+            // handleSuccess({ props: { title: 'Department submited successfully' } })
+            reLogin(data = { email: formData.email, password: userData.password })
+          })
+          .catch(err => handleError({ props: { title: 'An Error aquired', text: error.message } }))
 
       })
-      .catch(err => console.log(err))
+      .catch(err => handleError({ props: { title: 'An Error aquired', text: error.message } }))
 
   }
 
@@ -88,14 +161,20 @@ const GeneralTabs = ({ data }) => {
             <FormGroup>
               <Label for='username'>Username</Label>
               <Controller
-                defaultValue={userData.fullName}
+
                 control={control}
-                as={Input}
+                render={(props) => {
+                  return <Input type='text' name='name' id='nameMulti' placeholder='Nom '
+                    defaultValue={userData.fullName}
+
+                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} />
+                }}
+                // as={Input}
                 id='username'
                 name='username'
                 placeholder='Username'
-                innerRef={register({ required: true })}
-                onChange={e => setFormData({ ...formData, fullName: e.target.value })}
+                // innerRef={register({ required: true })}
+                // onChange={e => setFormData({ ...formData, fullName: e.target.value })}
                 className={classnames({
                   'is-invalid': errors.username
                 })}
@@ -106,16 +185,19 @@ const GeneralTabs = ({ data }) => {
             <FormGroup>
               <Label for='email'>E-mail</Label>
               <Controller
-                defaultValue={userData.email}
+                // defaultValue={userData.email}
                 control={control}
-                as={Input}
+                // as={Input}
                 type='email'
                 id='email'
                 name='email'
                 placeholder='Email'
                 innerRef={register({ required: true })}
-                onChange={e => setFormData({ ...formData, email: e.target.value })}
-
+                // onChange={e => setFormData({ ...formData, email: e.target.value })}
+                render={(props) => {
+                  return <Input name='name' id='nameMulti' placeholder='E-mail' defaultValue={userData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                }}
                 className={classnames({
                   'is-invalid': errors.email
                 })}

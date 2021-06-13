@@ -2,8 +2,8 @@
 
 .badge {
   color: $white;
-  &[class*='badge-'] {
-    [class*='icon-'] {
+  &[class*="badge-"] {
+    [class*="icon-"] {
       line-height: 1;
     }
 
@@ -56,9 +56,9 @@
   &.badge-up {
     position: absolute;
     top: -11px;
-    right: -9px;
-    min-width: 1.429rem;
-    min-height: 1.429rem;
+    // right: -9px;
+    min-width: 1rem; // 1.429
+    min-height: 1rem; // 1.429
     display: flex;
     align-items: center;
     justify-content: center;

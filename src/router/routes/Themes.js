@@ -14,6 +14,14 @@ const DemmandesRoutes = [
     }
   },
   {
+    path: '/themes/client',
+    component: lazy(() => import('../../views/themes/clientThemes')),
+    meta: {
+      action: 'read',
+      resource: 'auth'
+    }
+  },
+  {
     path: '/editTheme/:id',
     component: lazy(() => import('../../views/themes/reactstrap/EditTheme'))
   },

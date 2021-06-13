@@ -15,6 +15,8 @@ import DirectionsLayoutsRoutes from './Directions'
 import DivisionsLayoutsRoutes from './Divisions'
 import ServicesLayoutsRoutes from './Services'
 import OthersRoutes from './OtherRoutes'
+import AlertEmails from './Alerts'
+
 
 // ** Document title
 const TemplateTitle = 'Pfe CIMS'
@@ -25,6 +27,7 @@ const DefaultRoute = '/dashboard/ecommerce'
 // ** Merge Routes
 const Routes = [
   ...DashboardRoutes,
+  ...AlertEmails,
   ...AppRoutes,
   ...OthersRoutes,
   ...DemmandesLayoutsRoutes,

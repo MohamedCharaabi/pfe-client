@@ -8,6 +8,7 @@ const AlertForm = () => {
     return (
         <Fragment>
             <Row>
+
                 <Col sm='12'>
                     <TextareaFloatingLabel />
                 </Col>

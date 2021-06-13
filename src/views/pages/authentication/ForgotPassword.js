@@ -1,15 +1,34 @@
 import { isUserLoggedIn } from '@utils'
+import { useState } from 'react'
+
 import { useSkin } from '@hooks/useSkin'
 import { ChevronLeft } from 'react-feather'
 import { Link, Redirect } from 'react-router-dom'
 import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import '@styles/base/pages/page-auth.scss'
+import { handleError, handleSuccess } from '../../exports/SweetAlerts'
+import axios from 'axios'
 
 const ForgotPassword = () => {
   const [skin, setSkin] = useSkin()
+  const [email, setEmail] = useState()
 
   const illustration = skin === 'dark' ? 'forgot-password-v2-dark.svg' : 'forgot-password-v2.svg',
     source = require(`@src/assets/images/pages/${illustration}`).default
+
+  async function submit() {
+    // event.preventDefault()
+    // console.log(formData)
+    // console.log(depForm)
+    await axios.post("https://pfe-cims.herokuapp.com/new/forgotpass", { email },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        }
+      })
+      .then(async (res) => handleSuccess({ props: { title: 'please check your email' } })
+      ).catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
+  }
 
   if (!isUserLoggedIn()) {
     return (
@@ -84,9 +103,17 @@ const ForgotPassword = () => {
                   <Label className='form-label' for='login-email'>
                     Email
                   </Label>
-                  <Input type='email' id='login-email' placeholder='john@example.com' autoFocus />
+                  <Input type='email' id='login-email' placeholder='john@example.com' autoFocus
+                    onChange={(e) => setEmail(e.target.value)}
+
+                  />
                 </FormGroup>
-                <Button.Ripple color='primary' block>
+                <Button.Ripple color='primary' block
+                  onClick={e => {
+                    e.preventDefault()
+                    submit()
+                  }}
+                >
                   Send reset link
                 </Button.Ripple>
               </Form>

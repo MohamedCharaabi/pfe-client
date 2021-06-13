@@ -1,17 +1,11 @@
-import { Type, Grid, Circle, AlertCircle } from 'react-feather'
+import { File, Mail } from 'react-feather'
 
 export default [
-  // {
-  //   id: 'alertctstrap',
-  //   title: 'Alerts',
-  //   icon: <AlertCircle size={20} />,
-  //   navLink: '/alerts'
-  // },
   {
-    id: 'themesReactstrap',
-    title: 'Themes',
-    icon: <Type size={20} />,
-    navLink: '/themes/reactstrap'
+    id: 'alertsMails',
+    title: 'Mails',
+    icon: <Mail size={20} />,
+    navLink: '/alertMails'
   }
   // {
   //   id: 'dataTable',
