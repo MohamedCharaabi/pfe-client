@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // ** Third Party Components
 import Flatpickr from 'react-flatpickr'
@@ -30,15 +30,24 @@ const AddNewModal = ({ open, handleModal, load }) => {
   //formData
   const [formData, setFormData] = useState({ theme: '', creator: '' })
 
+  useEffect(() => {
+    // setUserData(JSON.parse(localStorage.getItem('userData')))
+    setFormData({ ...formData, creator: JSON.parse(localStorage.getItem('userData')).fullName })
+
+  }, [])
+
   async function handleSubmit() {
     console.log('formdata ==>', formData)
-    await axios.post('https://pfe-cims.herokuapp.com/theme', formData)
+    await axios.post('https://pfe-cims.herokuapp.com/requesttheme', formData)
       .then(res => {
         load()
-        handleSuccess({ props: { title: 'Theme Created Succesfuly' } })
+        handleSuccess({ props: { title: 'Theme submitted' } })
       })
-      .catch(error => handleError({ props: { title: 'Error while creating theme', text: error.message } })
-      )
+      .catch(error => {
+        // if(error.res.status )
+        console.log(error.response)
+        handleError({ props: { title: error.response.data.message } })
+      })
   }
 
   // ** Custom close btn
@@ -54,7 +63,7 @@ const AddNewModal = ({ open, handleModal, load }) => {
       contentClassName='pt-0'
     >
       <ModalHeader className='mb-3' toggle={handleModal} close={CloseBtn} tag='div'>
-        <h5 className='modal-title'>Add Theme</h5>
+        <h5 className='modal-title'>Demmande Theme</h5>
       </ModalHeader>
       <ModalBody className='flex-grow-1'>
         <Form onSubmit={handleSubmit}>
@@ -73,7 +82,7 @@ const AddNewModal = ({ open, handleModal, load }) => {
               />
             </InputGroup>
           </FormGroup>
-          <FormGroup>
+          {/* <FormGroup>
             <Label for='post'>Creator</Label>
             <InputGroup>
               <InputGroupAddon addonType='prepend'>
@@ -87,6 +96,7 @@ const AddNewModal = ({ open, handleModal, load }) => {
               />
             </InputGroup>
           </FormGroup>
+          */}
           {/* <FormGroup>
           <Label for='email'>Email</Label>
           <InputGroup>
@@ -127,12 +137,12 @@ const AddNewModal = ({ open, handleModal, load }) => {
             onClick={handleSubmit}
           >
             Submit
-        </Button>
+          </Button>
           <Button color='secondary'
             onClick={handleModal}
             outline>
             Cancel
-        </Button>
+          </Button>
         </Form>
       </ModalBody>
     </Modal>

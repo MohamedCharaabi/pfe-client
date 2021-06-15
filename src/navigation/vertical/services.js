@@ -16,20 +16,26 @@ export default [
         id: 'dtBasic',
         title: 'Services',
         icon: <Circle size={12} />,
-        navLink: '/services'
+        navLink: '/services',
+        action: 'read',
+        resource: 'user'
       },
       {
         id: 'dtAdvance',
         title: 'Ajout Services',
         icon: <Circle size={12} />,
-        navLink: '/addService'
+        navLink: '/addService',
+        action: 'read',
+        resource: 'user'
       },
 
       {
         id: 'dtAdvance',
         title: 'Ajout Directeur',
         icon: <Circle size={12} />,
-        navLink: '/addService'
+        navLink: '/ser/ajoutdirector',
+        action: 'read',
+        resource: 'user'
       }
     ]
   }

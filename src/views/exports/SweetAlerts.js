@@ -12,7 +12,7 @@ export const handleSuccess = ({ props }) => {
             confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-    }).then(console.log('swal clcic'))
+    }).then(props.click)
 }
 
 export const handleInfo = () => {

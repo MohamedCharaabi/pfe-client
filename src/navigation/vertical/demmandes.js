@@ -5,7 +5,9 @@ export default [
     id: 'demmandesReactstrap',
     title: 'Demmandes',
     icon: <File size={20} />,
-    navLink: '/demmandes/reactstrap'
+    navLink: '/demmandes/reactstrap',
+    action: 'read',
+    resource: 'user'
   }
   // {
   //   id: 'dataTable',

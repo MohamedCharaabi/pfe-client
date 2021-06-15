@@ -4,7 +4,7 @@ import Avatar from '@components/avatar'
 // ** Third Party Components
 import axios from 'axios'
 import moment from 'moment'
-import { MoreVertical, Edit, FileText, Archive, Trash } from 'react-feather'
+import { MoreVertical, Edit, FileText, Archive, Trash, Check } from 'react-feather'
 import { Link } from 'react-router-dom'
 import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { handleError, handleSuccess } from '../../exports/SweetAlerts'
@@ -38,6 +38,30 @@ async function deleteTheme(id) {
       }
     })
     .catch(error => handleError({ props: { title: 'Error while deleting theme', text: error.message } }))
+}
+async function deleteThemeRequest(id) {
+  await axios.delete(`https://pfe-cims.herokuapp.com/requesttheme/${id}`)
+    .then(res => {
+      if (res.status === 200) {
+        // loadThemes()
+        return handleSuccess({ props: { title: 'Proposition Supprimer' } })
+      }
+    })
+    .catch(error => handleError({ props: { title: 'Error while deleting theme', text: error.message } }))
+}
+async function addTheme(formData, id) {
+  console.log(formData)
+  await axios.post('https://pfe-cims.herokuapp.com/theme', formData)
+    .then(async (res) => {
+      // load()
+      await axios.delete(`https://pfe-cims.herokuapp.com/requesttheme/${id}`)
+        .then(res => handleSuccess({ props: { title: 'Theme Created Succesfuly' } }))
+    })
+    .catch(error => {
+      handleError({ props: { title: error.response.data.message } }
+      )
+    }
+    )
 }
 
 // ** Table Zero Config Column
@@ -137,29 +161,76 @@ export const columns = [
     cell: row => {
       return (
         <div className='d-flex'>
-          <UncontrolledDropdown>
-            <DropdownToggle className='pr-1' tag='span'>
-              <MoreVertical size={15} />
-            </DropdownToggle>
-            <DropdownMenu right>
-              <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
-                <FileText size={15} />
-                <span className='align-middle ml-50'>Details</span>
-              </DropdownItem>
-              <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
-                <Archive size={15} />
-                <span className='align-middle ml-50'>Archive</span>
-              </DropdownItem>
-              <DropdownItem tag='a' href='/' className='w-100' onClick={e => { e.preventDefault(); deleteTheme(row._id) }}>
-                <Trash size={15} />
-                <span className='align-middle ml-50'>Delete</span>
-              </DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
-          <Link to={`/editTheme/${row._id}`}>
 
-            <Edit size={15} />
+          <Link to={`/editTheme/${row._id}`}>
+            <Edit size={20} className='mr-50' />
+
           </Link>
+          <Trash size={20} color={'red'}
+            onClick={e => {
+              e.preventDefault()
+              deleteTheme(row._id)
+            }
+
+            } />
+
+        </div>
+      )
+    }
+  }
+]
+
+// ** Table Common Column
+export const propositionsColumns = [
+  {
+    name: 'Name',
+    selector: 'theme',
+    sortable: true,
+    minWidth: '250px',
+    cell: row => (
+      <div className='d-flex align-items-center'>
+        {/* {row.avatar === '' ? (
+          <Avatar color={`light-${states[row.status]}`} content={row.full_name} initials />
+        ) : (
+          <Avatar img={require(`@src/assets/images/portrait/small/avatar-s-${row.avatar}`).default} />
+        )} */}
+        <div className='user-info text-truncate ml-1'>
+          <span className='d-block font-weight-bold text-truncate'>{row.theme}</span>
+          {/* <small>{row.post}</small> */}
+        </div>
+      </div>
+    )
+  },
+  {
+    name: 'Creator',
+    selector: 'creator',
+    sortable: true,
+    minWidth: '250px'
+  },
+  {
+    name: 'Date',
+    selector: 'createdAt',
+    sortable: true,
+    minWidth: '150px',
+    cell: row => (moment(row.createdAt).format('MMMM Do YYYY, h:mm'))
+  },
+  {
+    name: 'Actions',
+    allowOverflow: true,
+    cell: row => {
+      return (
+        <div className='d-flex'>
+
+          <Check size={20} color={'green'} className='mr-50' onClick={e => {
+            e.preventDefault()
+            addTheme({ theme: row.theme, creator: row.creator }, row._id)
+          }} />
+
+
+          <Trash size={20} color={'red'} onClick={e => {
+            e.preventDefault()
+            deleteThemeRequest(row._id)
+          }} />
         </div>
       )
     }

@@ -4,12 +4,16 @@ import { Redirect } from 'react-router-dom'
 const OthersRoutes = [
     {
         path: '/profile',
-        component: lazy(() => import('../../views/account-settings'))
+        component: lazy(() => import('../../views/account-settings')),
+        meta: {
+            action: 'read',
+            resource: 'user'
+        }
     },
-    {
-        path: '/alerts',
-        component: lazy(() => import('../../views/alert'))
-    },
+    // {
+    //     path: '/alerts',
+    //     component: lazy(() => import('../../views/alert/todo'))
+    // },
     {
         path: '/alert/:id',
         component: lazy(() => import('../../views/alert/alertMessage'))

@@ -6,7 +6,11 @@ const AlertRoutes = [
     exact: true,
     appLayout: true,
     className: 'todo-application',
-    component: lazy(() => import('../../views/alert/todo'))
+    component: lazy(() => import('../../views/alert/todo')),
+    meta: {
+      action: 'read',
+      resource: 'user'
+    }
   }
 
 ]

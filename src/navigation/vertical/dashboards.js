@@ -6,7 +6,10 @@ export default [
     title: 'Dashboards',
     icon: <Home size={20} />,
     badge: 'light-warning',
-    navLink: '/dashboard/ecommerce'
+    navLink: '/dashboard/ecommerce',
+    action: 'read',
+    resource: 'user'
+
     // children: [
     //   // {
     //   //   id: 'analyticsDash',

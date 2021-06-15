@@ -39,7 +39,7 @@ const AjoutDirector = () => {
     const [depOptions, setDepOptions] = useState()
 
     async function loadDepartments() {
-        await axios.get('https://pfe-cims.herokuapp.com/dep')
+        await axios.get('https://pfe-cims.herokuapp.com/dep/checkdirector')
             .then(res => setDepartments(res.data))
             .catch(error => alert(error.message))
     }
@@ -136,10 +136,10 @@ const AjoutDirector = () => {
                             <FormGroup className='d-flex mb-0'>
                                 <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => { e.preventDefault(); submit() }}>
                                     Submit
-                </Button.Ripple>
+                                </Button.Ripple>
                                 <Button.Ripple outline color='secondary' type='reset' >
                                     Reset
-                </Button.Ripple>
+                                </Button.Ripple>
                             </FormGroup>
                         </Col>
 

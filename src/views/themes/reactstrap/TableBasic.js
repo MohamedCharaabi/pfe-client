@@ -38,6 +38,7 @@ const TableBasic = () => {
           <th>theme</th>
           <th>Creator</th>
           <th>Date</th>
+          <th>Actions</th>
 
         </tr>
       </thead>

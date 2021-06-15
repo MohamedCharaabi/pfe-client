@@ -3,11 +3,19 @@ import { lazy } from 'react'
 const DemmandesRoutes = [
   {
     path: '/demmandes/reactstrap',
-    component: lazy(() => import('../../views/demmandes/reactstrap'))
+    component: lazy(() => import('../../views/demmandes/reactstrap')),
+    meta: {
+      action: 'read',
+      resource: 'user'
+    }
   },
   {
     path: '/demmandes/details/:id',
-    component: lazy(() => import('../../views/demmandes/reactstrap/RequestDetails'))
+    component: lazy(() => import('../../views/demmandes/reactstrap/RequestDetails')),
+    meta: {
+      action: 'read',
+      resource: 'user'
+    }
   },
   {
     path: '/datatables/basic',

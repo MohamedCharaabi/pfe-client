@@ -16,19 +16,25 @@ export default [
         id: 'dtBasic',
         title: 'Directions',
         icon: <Circle size={12} />,
-        navLink: '/directions/reactstrap'
+        navLink: '/directions/reactstrap',
+        action: 'read',
+        resource: 'user'
       },
       {
         id: 'dtAdvance',
         title: 'Ajout Direction',
         icon: <Circle size={12} />,
-        navLink: '/addDirection'
+        navLink: '/addDirection',
+        action: 'read',
+        resource: 'user'
       },
       {
         id: 'dtAdvance',
         title: 'Ajout Directeur',
         icon: <Circle size={12} />,
-        navLink: '/dir/ajoutdirector'
+        navLink: '/dir/ajoutdirector',
+        action: 'read',
+        resource: 'user'
       }
     ]
   }

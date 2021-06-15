@@ -32,43 +32,67 @@ const colourOptions = [
 ]
 const EditDirection = () => {
     const { dir } = useParams()
-    const [dirForm, setDirForm] = useState({})
+    const [dirForm, setDirForm] = useState({ name: '', dep_name: '' })
     const [direction, setDirection] = useState()
     const [formData, setFormData] = useState({ fullName: '', email: '', rolePer: 'dir', Dep: '', Dir: '', Div: '', Ser: '' })
     const [isLoading, setIsLoading] = useState(true)
+    const [depOptions, setDepOptions] = useState()
+    const [departments, setDepartments] = useState([])
+
 
     async function getDir() {
 
         await axios.get(`https://pfe-cims.herokuapp.com/dir/${dir}`)
             .then(res => {
                 setDirection(res.data)
-                setFormData({ ...formData, Dep: res.data.dep_name, Dir: res.data.name })
+                setDirForm({ ...dirForm, dep_name: res.data.dep_name })
                 setIsLoading(false)
             }).catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
     }
+    async function loadDepartments() {
+        await axios.get('https://pfe-cims.herokuapp.com/dep')
+            .then(res => {
+
+                const options = []
+                res.data.forEach(dep => {
+                    options.push({ value: dep.name, label: dep.name })
+                })
+                setDepOptions(options)
+                setDepartments(res.data)
+            })
+            .catch(error => alert(error.message))
+    }
+
 
     useEffect(() => {
+        loadDepartments()
         getDir()
 
     }, [])
 
+
+    function getDepartments() {
+        const options = []
+        departments.forEach(dep => {
+            options.push({ value: dep.name, label: dep.name })
+        })
+        setDepOptions(options)
+    }
     async function submit() {
         // event.preventDefault()
-        console.log(formData)
+        // console.log(formData)
         // console.log(dirForm)
-        if (dirForm.name) {
-            await axios.patch(`https://pfe-cims.herokuapp.com/dep/${dep}`, dirForm)
-                .then(res => console.log(res.data))
-                .catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
-        }
-        await axios.post("https://pfe-cims.herokuapp.com/new/register", formData,
-            {
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                }
-            })
-            .then(async (res) => handleSuccess({ props: { title: 'Direction updated successfully' } })
-            ).catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
+        await axios.patch(`https://pfe-cims.herokuapp.com/dir/${dir}`, dirForm)
+            .then(res => handleSuccess({ props: { title: 'Direction est modifier' } }))
+            .catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
+        // await axios.post("https://pfe-cims.herokuapp.com/new/register", formData,
+        //     {
+        //         headers: {
+        //             "Access-Control-Allow-Origin": "*"
+        //         }
+        //     })
+        //     .then(async (res) => handleSuccess({ props: { title: 'Direction updated successfully' } })
+        //     ).catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
     }
 
     if (isLoading) {
@@ -78,32 +102,41 @@ const EditDirection = () => {
 
         <Card>
             <CardHeader>
-                <CardTitle tag='h4'>Edit Department</CardTitle>
+                <CardTitle tag='h4'>Edit Direction</CardTitle>
             </CardHeader>
 
             <CardBody>
                 <Form onSubmit={submit}>
                     <Row>
 
+                        <Col className='mb-1' lg='3' md='6' sm='12'>
+                            <Label>Department</Label>
+                            <Select
+                                theme={selectThemeColors}
+                                className='react-select'
+                                classNamePrefix='select'
+                                defaultValue={
+                                    { value: direction.dep_name, label: dirForm.dep_name }
+
+                                }
+                                options={depOptions}
+                                // onFocus={getDepartments}
+                                onChange={val => {
+                                    setDirForm({ ...dirForm, dep_name: val.value })
+                                    // setDirOptions([])
+                                    // setDivOptions([])
+                                    // setSerOptions([])
+
+                                }}
+                                isClearable={false}
+                            />
+                        </Col>
+
                         <Col lg='3' md='6' sm='12'>
                             <FormGroup>
                                 <Label for='nameMulti'>Direction Name</Label>
                                 <Input type='text' name='name' id='nameMulti' placeholder={direction.name}
-                                    onChange={(e) => setDirForm({ name: e.target.value })} />
-                            </FormGroup>
-                        </Col>
-                        <Col lg='3' md='6' sm='12'>
-                            <FormGroup>
-                                <Label for='nameMulti'>Director Name</Label>
-                                <Input type='text' name='name' id='nameMulti' placeholder="director full name"
-                                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} />
-                            </FormGroup>
-                        </Col>
-                        <Col lg='3' md='6' sm='12'>
-                            <FormGroup>
-                                <Label for='nameMulti'>Director email</Label>
-                                <Input type='email' name='name' id='nameMulti' placeholder='director email'
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+                                    onChange={(e) => setDirForm({ ...dirForm, name: e.target.value })} />
                             </FormGroup>
                         </Col>
 
@@ -114,10 +147,10 @@ const EditDirection = () => {
                             <FormGroup className='d-flex mb-0'>
                                 <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => { e.preventDefault(); submit() }}>
                                     Submit
-                </Button.Ripple>
+                                </Button.Ripple>
                                 <Button.Ripple outline color='secondary' type='reset' >
                                     Reset
-                </Button.Ripple>
+                                </Button.Ripple>
                             </FormGroup>
                         </Col>
 

@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { MoreVertical, Edit, Trash } from 'react-feather'
 import { Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
+import { handleError, handleInfo, handleSuccess } from '../../exports/SweetAlerts'
 
 
 const TableBasic = () => {
@@ -32,8 +33,12 @@ const TableBasic = () => {
   async function deleteDirection(id) {
 
     await axios.delete(`https://pfe-cims.herokuapp.com/dir/${id}`)
-      .then(res => loadDirections())
-      .catch(error => alert(error.message))
+      .then(res => {
+        // loadDepartments() 
+        handleSuccess({ props: { title: 'Directions supprimer', click: loadDirections } })
+      })
+      .catch(error => handleError({ props: { title: error.message } }))
+
   }
 
   return (
@@ -72,7 +77,7 @@ const TableBasic = () => {
                       <Edit className='mr-50' size={15} /> <span className='align-middle'>Edit</span>
                     </DropdownItem>
                   </Link>
-                  <DropdownItem href='/' onClick={e => e.preventDefault()}>
+                  <DropdownItem href='/' onClick={e => { e.preventDefault(); deleteDirection(direction._id) }}>
                     <Trash className='mr-50' size={15} /> <span className='align-middle'>Delete</span>
                   </DropdownItem>
                 </DropdownMenu>

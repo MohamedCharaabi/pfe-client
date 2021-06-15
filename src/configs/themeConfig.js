@@ -3,8 +3,8 @@
 //Template config options
 const themeConfig = {
   app: {
-    appName: 'Vuexy',
-    appLogoImage: require('@src/assets/images/logo/logo.svg').default
+    appName: 'PFE-CIMS',
+    appLogoImage: require('@src/assets/images/logo/logo-cimsp.jpg').default
   },
   layout: {
     isRTL: false,

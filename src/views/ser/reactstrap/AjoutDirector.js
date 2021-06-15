@@ -33,28 +33,40 @@ const colourOptions = [
 const AjoutDirDirector = () => {
     // const { dep } = useParams()
     const [depForm, setDepForm] = useState({})
-    const [directions, setDirections] = useState()
-    const [formData, setFormData] = useState({ fullName: '', email: '', rolePer: 'dir', Dep: '', Dir: '', Div: '', Ser: '' })
+    const [services, setServices] = useState()
+    const [formData, setFormData] = useState({ fullName: '', email: '', rolePer: 'ser', Dep: '', Dir: '', Div: '', Ser: '' })
     const [isLoading, setIsLoading] = useState(false)
-    const [dirOptions, setDirOptions] = useState()
+    const [serOptions, setSerOptions] = useState()
 
-    async function loadDirections() {
-        await axios.get('https://pfe-cims.herokuapp.com/dir/checkdirector')
-            .then(res => setDirections(res.data))
+    async function loadServices() {
+        await axios.get('https://pfe-cims.herokuapp.com/ser/checkdirector')
+            .then(res => {
+                setServices(res.data)
+                const options = []
+                console.log(res.data)
+
+                res.data.forEach(ser => {
+                    options.push({ value: ser.name, label: ser.name })
+                })
+                setSerOptions(options)
+
+            })
             .catch(error => alert(error.message))
     }
 
     useEffect(() => {
-        loadDirections()
+        loadServices()
 
     }, [])
 
-    function getDirections() {
+    function getDivisions() {
         const options = []
-        directions.forEach(dir => {
-            options.push({ value: dir.name, label: dir.name })
+        console.log(divisions)
+
+        divisions.forEach(div => {
+            options.push({ value: div.name, label: div.name })
         })
-        setDirOptions(options)
+        setDivOptions(options)
     }
     async function submit() {
         // event.preventDefault()
@@ -90,21 +102,26 @@ const AjoutDirDirector = () => {
                     <Row>
 
                         <Col className='mb-1' lg='3' md='6' sm='12'>
-                            <Label>Directions</Label>
+                            <Label>Services</Label>
                             <Select
                                 theme={selectThemeColors}
                                 className='react-select'
                                 classNamePrefix='select'
-                                defaultValue={colourOptions[1]}
-                                options={dirOptions}
-                                onFocus={getDirections}
+                                defaultValue={colourOptions[2]}
+                                options={serOptions}
+                                vonFocus={getDivisions}
                                 onChange={val => {
 
-                                    const dep = directions.find(e => e.name === val.value).dep_name
+                                    const dep = services.find(e => e.name === val.value).dep_name
+                                    const dir = services.find(e => e.name === val.value).dir_name
+                                    const div = services.find(e => e.name === val.value).div_name
                                     setFormData({
                                         ...formData,
-                                        Dir: val.value,
+                                        Ser: val.value,
+                                        Div: div,
+                                        Dir: dir,
                                         Dep: dep
+
                                     })
                                     // setDirOptions([])
                                     // setDivOptions([])

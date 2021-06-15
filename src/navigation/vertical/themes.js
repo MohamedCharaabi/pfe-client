@@ -7,29 +7,33 @@ export default [
   //   icon: <AlertCircle size={20} />,
   //   navLink: '/alerts'
   // },
-  {
-    id: 'themesReactstrap',
-    title: 'Themes',
-    icon: <Type size={20} />,
-    navLink: '/themes/reactstrap'
-  }
   // {
-  //   id: 'dataTable',
-  //   title: 'DataTable',
-  //   icon: <Grid size={20} />,
-  //   children: [
-  //     {
-  //       id: 'dtBasic',
-  //       title: 'Basic',
-  //       icon: <Circle size={12} />,
-  //       navLink: '/datatables/basic'
-  //     },
-  //     {
-  //       id: 'dtAdvance',
-  //       title: 'Advanced',
-  //       icon: <Circle size={12} />,
-  //       navLink: '/datatables/advance'
-  //     }
-  //   ]
+  //   id: 'themesReactstrap',
+  //   title: 'Themes',
+  //   icon: <Type size={20} />,
+  //   navLink: '/themes/reactstrap'
   // }
+  {
+    id: 'dataTathemesReactstrapble',
+    title: 'Themes',
+    icon: <Grid size={20} />,
+    children: [
+      {
+        id: 'themes',
+        title: 'Themes',
+        icon: <Type size={12} />,
+        navLink: '/themes/reactstrap',
+        action: 'read',
+        resource: 'user'
+      },
+      {
+        id: 'proposition',
+        title: 'Proposition',
+        icon: <Circle size={12} />,
+        navLink: '/themes/propositions',
+        action: 'read',
+        resource: 'user'
+      }
+    ]
+  }
 ]

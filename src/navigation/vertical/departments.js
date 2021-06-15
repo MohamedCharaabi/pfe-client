@@ -16,19 +16,25 @@ export default [
         id: 'departments',
         title: 'Departmnets',
         icon: <Circle size={12} />,
-        navLink: '/departments'
+        navLink: '/departments',
+        action: 'read',
+        resource: 'user'
       },
       {
         id: 'dtAdvance',
         title: 'Ajout Department',
         icon: <Circle size={12} />,
-        navLink: '/addDepartment'
+        navLink: '/addDepartment',
+        action: 'read',
+        resource: 'user'
       },
       {
         id: 'dtAdvance',
         title: 'Ajout Directeur',
         icon: <Circle size={12} />,
-        navLink: '/ajoutDirector'
+        navLink: '/ajoutDirector',
+        action: 'read',
+        resource: 'user'
       }
     ]
   }

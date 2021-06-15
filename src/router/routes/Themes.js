@@ -10,7 +10,15 @@ const DemmandesRoutes = [
     component: lazy(() => import('../../views/themes/reactstrap')),
     meta: {
       action: 'read',
-      resource: 'auth'
+      resource: 'user'
+    }
+  },
+  {
+    path: '/themes/propositions',
+    component: lazy(() => import('../../views/themes/reactstrap/Proposition')),
+    meta: {
+      action: 'read',
+      resource: 'user'
     }
   },
   {
@@ -23,7 +31,11 @@ const DemmandesRoutes = [
   },
   {
     path: '/editTheme/:id',
-    component: lazy(() => import('../../views/themes/reactstrap/EditTheme'))
+    component: lazy(() => import('../../views/themes/reactstrap/EditTheme')),
+    meta: {
+      action: 'read',
+      resource: 'user'
+    }
   },
   {
     path: '/datatables/basic',

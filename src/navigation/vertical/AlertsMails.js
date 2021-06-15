@@ -5,6 +5,8 @@ export default [
     id: 'alertsMails',
     title: 'Mails',
     icon: <Mail size={20} />,
+    action: 'read',
+    resource: 'user',
     navLink: '/alertMails'
   }
   // {

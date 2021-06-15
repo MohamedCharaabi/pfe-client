@@ -11,6 +11,7 @@ import avatar3 from '@src/assets/images/portrait/small/avatar-s-7.jpg'
 import { MoreVertical, Edit, Trash } from 'react-feather'
 import { Table, Badge, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import { handleError, handleInfo, handleSuccess } from '../../exports/SweetAlerts'
 
 const avatarGroupData1 = [
   {
@@ -117,8 +118,12 @@ const TableBasic = () => {
 
   async function deleteDivision(id) {
     await axios.delete(`https://pfe-cims.herokuapp.com/div/${id}`)
-      .then(res => loadDivision())
-      .catch(error => alert(error.message))
+      .then(res => {
+        // loadDepartments() 
+        handleSuccess({ props: { title: 'Division supprimer', click: loadDivision } })
+      })
+      .catch(error => handleError({ props: { title: error.message } }))
+
   }
   useEffect(() => {
     loadDivision()
@@ -138,6 +143,8 @@ const TableBasic = () => {
       </thead>
       <tbody>
         {divisions.map(division => {
+          // const p = personnels.find((e) => e.Div === division.name && e.rolePer === 'div').fullName
+          // console.log(p)
           return <tr>
             <td>
               {/* <img className='mr-75' src={angular} alt='angular' height='20' width='20' /> */}
@@ -148,11 +155,14 @@ const TableBasic = () => {
               {division.dep_name}
             </td>
             <td>
-              {personnels.map(personnel => {
-                if (personnel.Div === division.name && personnel.rolePer === 'div') {
-                  return personnel.fullName
-                }
-              })}
+              {
+                personnels.map(personnel => {
+                  if (personnel.Div === division.name && personnel.rolePer === 'div') {
+                    return personnel.fullName
+                  }
+                })
+              }
+
             </td>
             <td>
               <UncontrolledDropdown>
@@ -165,7 +175,7 @@ const TableBasic = () => {
                       <Edit className='mr-50' size={15} /> <span className='align-middle'>Edit</span>
                     </DropdownItem>
                   </Link>
-                  <DropdownItem href='/' onClick={e => e.preventDefault()}>
+                  <DropdownItem href='/' onClick={e => { e.preventDefault(); deleteDivision(division._id) }}>
                     <Trash className='mr-50' size={15} /> <span className='align-middle'>Delete</span>
                   </DropdownItem>
                 </DropdownMenu>

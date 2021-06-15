@@ -16,19 +16,25 @@ export default [
         id: 'dtBasic',
         title: 'Divisions',
         icon: <Circle size={12} />,
-        navLink: '/divisions'
+        navLink: '/divisions',
+        action: 'read',
+        resource: 'user'
       },
       {
         id: 'dtAdvance',
         title: 'Ajoput Division',
         icon: <Circle size={12} />,
-        navLink: '/addDivision'
+        navLink: '/addDivision',
+        action: 'read',
+        resource: 'user'
       },
       {
         id: 'dtAdvance',
         title: 'Ajout Directeur',
         icon: <Circle size={12} />,
-        navLink: '/addDivision'
+        navLink: '/div/ajoutdirector',
+        action: 'read',
+        resource: 'user'
       }
     ]
   }

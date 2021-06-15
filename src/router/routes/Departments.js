@@ -3,19 +3,35 @@ import { lazy } from 'react'
 const DepartmentRoutes = [
   {
     path: '/departments',
-    component: lazy(() => import('../../views/deps/reactstrap'))
+    component: lazy(() => import('../../views/deps/reactstrap')),
+    meta: {
+      action: 'read',
+      resource: 'user'
+    }
   },
   {
     path: '/addDepartment',
-    component: lazy(() => import('../../views/deps/reactstrap/AddDepartment'))
+    component: lazy(() => import('../../views/deps/reactstrap/AddDepartment')),
+    meta: {
+      action: 'read',
+      resource: 'user'
+    }
   },
   {
     path: '/editDepartment/:dep',
-    component: lazy(() => import('../../views/deps/reactstrap/EditDepartment'))
+    component: lazy(() => import('../../views/deps/reactstrap/EditDepartment')),
+    meta: {
+      action: 'read',
+      resource: 'user'
+    }
   },
   {
     path: '/ajoutDirector',
-    component: lazy(() => import('../../views/deps/reactstrap/AjoutDirector'))
+    component: lazy(() => import('../../views/deps/reactstrap/AjoutDirector')),
+    meta: {
+      action: 'read',
+      resource: 'user'
+    }
   },
   {
     path: '/datatables/basic',

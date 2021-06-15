@@ -3,6 +3,8 @@ import axios from 'axios'
 import { MoreVertical, Edit, Trash } from 'react-feather'
 import { Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import { handleError, handleInfo, handleSuccess } from '../../exports/SweetAlerts'
+
 
 const TableBasic = () => {
 
@@ -35,8 +37,11 @@ const TableBasic = () => {
   async function deleteDepartment(id) {
 
     await axios.delete(`https://pfe-cims.herokuapp.com/dep/${id}`)
-      .then(res => loadDepartments())
-      .catch(error => alert(error.message))
+      .then(res => {
+        // loadDepartments() 
+        handleSuccess({ props: { title: 'Department updated successfully', click: loadDepartments } })
+      })
+      .catch(error => handleError({ props: { title: error.message } }))
 
   }
 
@@ -47,6 +52,7 @@ const TableBasic = () => {
         <tr>
           <th>Name</th>
           <th>Director</th>
+          <th>Actions</th>
 
         </tr>
       </thead>
@@ -78,7 +84,7 @@ const TableBasic = () => {
                       <Edit className='mr-50' size={15} /> <span className='align-middle'>Edit</span>
                     </DropdownItem>
                   </Link>
-                  <DropdownItem href='/' onClick={e => e.preventDefault()}>
+                  <DropdownItem href='/' onClick={e => { e.preventDefault(); deleteDepartment(department._id) }}>
                     <Trash className='mr-50' size={15} /> <span className='align-middle'>Delete</span>
                   </DropdownItem>
                 </DropdownMenu>

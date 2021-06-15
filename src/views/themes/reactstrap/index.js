@@ -20,8 +20,8 @@ const Tables = () => {
       <Row>
         <Col sm='12'>
           <Card title='Themes' noBody>
-            {/* <TableBasic /> */}
-            <DataTableWithButtons />
+            <TableBasic />
+            {/* <DataTableWithButtons /> */}
 
           </Card>
         </Col>

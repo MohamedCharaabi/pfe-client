@@ -60,17 +60,17 @@ const EditDepartment = () => {
         // console.log(depForm)
         if (depForm.name) {
             await axios.patch(`https://pfe-cims.herokuapp.com/dep/${dep}`, depForm)
-                .then(res => console.log(res.data))
+                .then(res => handleSuccess({ props: { title: 'Department est modifier' } }))
                 .catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
         }
-        await axios.post("https://pfe-cims.herokuapp.com/new/register", formData,
-            {
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                }
-            })
-            .then(async (res) => handleSuccess({ props: { title: 'Department updated successfully' } })
-            ).catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
+        // await axios.post("https://pfe-cims.herokuapp.com/new/register", formData,
+        //     {
+        //         headers: {
+        //             "Access-Control-Allow-Origin": "*"
+        //         }
+        //     })
+        //     .then(async (res) => handleSuccess({ props: { title: 'Department updated successfully' } })
+        //     ).catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
     }
 
     if (isLoading) {
@@ -94,7 +94,7 @@ const EditDepartment = () => {
                                     onChange={(e) => setDepForm({ name: e.target.value })} />
                             </FormGroup>
                         </Col>
-                        <Col lg='3' md='6' sm='12'>
+                        {/* <Col lg='3' md='6' sm='12'>
                             <FormGroup>
                                 <Label for='nameMulti'>Director Name</Label>
                                 <Input type='text' name='name' id='nameMulti' placeholder="director full name"
@@ -107,7 +107,7 @@ const EditDepartment = () => {
                                 <Input type='email' name='name' id='nameMulti' placeholder='director email'
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                             </FormGroup>
-                        </Col>
+                        </Col> */}
 
 
                     </Row>
@@ -116,10 +116,10 @@ const EditDepartment = () => {
                             <FormGroup className='d-flex mb-0'>
                                 <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => { e.preventDefault(); submit() }}>
                                     Submit
-                </Button.Ripple>
+                                </Button.Ripple>
                                 <Button.Ripple outline color='secondary' type='reset' >
                                     Reset
-                </Button.Ripple>
+                                </Button.Ripple>
                             </FormGroup>
                         </Col>
 
