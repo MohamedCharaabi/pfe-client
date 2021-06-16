@@ -10,6 +10,14 @@ const OthersRoutes = [
             resource: 'user'
         }
     },
+    {
+        path: '/profilee',
+        component: lazy(() => import('../../views/account-settings')),
+        meta: {
+            action: 'read',
+            resource: 'auth'
+        }
+    },
     // {
     //     path: '/alerts',
     //     component: lazy(() => import('../../views/alert/todo'))

@@ -107,7 +107,7 @@ const AjoutDirDirector = () => {
                                 theme={selectThemeColors}
                                 className='react-select'
                                 classNamePrefix='select'
-                                defaultValue={colourOptions[2]}
+                                defaultValue={colourOptions[3]}
                                 options={serOptions}
                                 vonFocus={getDivisions}
                                 onChange={val => {

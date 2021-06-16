@@ -8,7 +8,7 @@ export default [
         icon: <Home size={12} />,
         action: 'read',
         resource: 'auth',
-        navLink: '/dashboard/ecommerce'
+        navLink: '/dashboard'
     },
     {
         id: 'perdemandes',
@@ -28,7 +28,7 @@ export default [
     },
     {
         id: 'alertReactstrap',
-        title: 'Alert',
+        title: 'Reclamation',
         icon: <AlertCircle size={20} />,
         action: 'read',
         resource: 'auth',

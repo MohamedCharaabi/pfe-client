@@ -36,6 +36,7 @@ const UserDropdown = () => {
   //** Vars
   const userAvatar = (userData && userData.avatar) || defaultAvatar
 
+  if (!userData) return <span></span>
   return (
     <UncontrolledDropdown tag='li' className='dropdown-user nav-item'>
       <DropdownToggle href='/' tag='a' className='nav-link dropdown-user-link' onClick={e => e.preventDefault()}>
@@ -46,14 +47,14 @@ const UserDropdown = () => {
         <Avatar img={userAvatar} imgHeight='40' imgWidth='40' status='online' />
       </DropdownToggle>
       <DropdownMenu right>
-        <DropdownItem tag={Link} to='/profile'>
+        <DropdownItem tag={Link} to={userData.role === 'admin' ? '/profile' : '/profilee'}>
           <User size={14} className='mr-75' />
           <span className='align-middle'>Profile</span>
         </DropdownItem>
-        <DropdownItem tag={Link} to='/apps/email'>
+        {/* <DropdownItem tag={Link} to='/apps/email'>
           <Mail size={14} className='mr-75' />
           <span className='align-middle'>Inbox</span>
-        </DropdownItem>
+        </DropdownItem> */}
         {/* <DropdownItem tag={Link} to='/apps/todo'>
           <CheckSquare size={14} className='mr-75' />
           <span className='align-middle'>Tasks</span>

@@ -144,6 +144,7 @@ const TaskSidebar = props => {
   const handleSidebarOpened = () => {
     const { selectedTask } = store
     if (!isObjEmpty(selectedTask)) {
+      console.log(selectTask)
       setTask(selectedTask)
       setTitle(selectedTask.title)
       setCompleted(selectedTask.isCompleted)
@@ -276,9 +277,11 @@ const TaskSidebar = props => {
       )
     }
   }
+  { console.log(assignee.value) }
 
   return (
     <Modal
+
       isOpen={open}
       toggle={handleTaskSidebar}
       className='sidebar-lg'
@@ -321,7 +324,7 @@ const TaskSidebar = props => {
 
             <Input
               id='task-title1'
-              // value={task.assignee.fullName}
+              value={assignee}
               placeholder='Title1'
               className='new-todo-item-title'
             // onChange={e => setTitle(e.target.value)}
@@ -329,17 +332,19 @@ const TaskSidebar = props => {
 
           </FormGroup>
           <FormGroup>
-            <Label className='form-label' for='due-date'>
-              Due Date
+            <Label className='form-label' for='task-assignee'>
+              Date
             </Label>
-            <Flatpickr
-              id='due-date'
-              name='due-date'
-              className='form-control'
-              onChange={date => setDueDate(date[0])}
+
+            <Input
+              id='task-title1'
+
               value={dueDate}
-              options={{ dateFormat: 'Y-m-d' }}
+              placeholder='Title1'
+              className='new-todo-item-title'
+            // onChange={e => setTitle(e.target.value)}
             />
+
           </FormGroup>
 
 

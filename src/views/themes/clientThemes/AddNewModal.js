@@ -63,7 +63,7 @@ const AddNewModal = ({ open, handleModal, load }) => {
       contentClassName='pt-0'
     >
       <ModalHeader className='mb-3' toggle={handleModal} close={CloseBtn} tag='div'>
-        <h5 className='modal-title'>Demmande Theme</h5>
+        <h5 className='modal-title'>Proposer Theme</h5>
       </ModalHeader>
       <ModalBody className='flex-grow-1'>
         <Form onSubmit={handleSubmit}>

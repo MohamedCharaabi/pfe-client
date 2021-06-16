@@ -21,7 +21,10 @@ const PagesRoutes = [
   {
     path: '/pages/login-v1',
     component: lazy(() => import('../../views/pages/authentication/LoginV1')),
-    layout: 'BlankLayout'
+    layout: 'BlankLayout',
+    meta: {
+      authRoute: true
+    }
   },
   {
     path: '/pages/login-v2',

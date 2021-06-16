@@ -26,7 +26,10 @@ const ForgotPassword = () => {
           "Access-Control-Allow-Origin": "*"
         }
       })
-      .then(async (res) => handleSuccess({ props: { title: 'please check your email' } })
+      .then(async (res) => {
+        console.log(res.data)
+        handleSuccess({ props: { title: 'please check your email' } })
+      }
       ).catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
   }
 

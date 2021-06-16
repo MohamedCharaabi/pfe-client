@@ -56,7 +56,7 @@ const TextareaFloatingLabel = () => {
     console.log(formData)
     // toast.success(<SuccessToast data={data} />, { hideProgressBar: true })
     await axios.post("https://pfe-cims.herokuapp.com/alert", formData)
-      .then(res => handleSuccess({ props: { title: 'alert envoyer avec sucsee' } })
+      .then(res => handleSuccess({ props: { title: 'reclamation envoyer' } })
       ).catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
 
   }
@@ -64,7 +64,7 @@ const TextareaFloatingLabel = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle tag='h4'>Envoyer Alert </CardTitle>
+        <CardTitle tag='h4'>Envoyer Reclamation </CardTitle>
       </CardHeader>
 
       <CardBody>

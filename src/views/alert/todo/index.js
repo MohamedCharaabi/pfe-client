@@ -89,7 +89,7 @@ const TODO = () => {
   // ** Function to handle Left sidebar & Task sidebar
   const handleMainSidebar = () => setMainSidebar(!mainSidebar)
   const handleTaskSidebar = () => setOpenTaskSidebar(!openTaskSidebar)
-  const handleMailDetail = () => setOpenMail(!openMail)
+  // const handleMailDetail = () => setOpenMail(!mainSidebar)
 
   // ** Get Tasks on mount & based on dependency change
   useEffect(() => {
@@ -122,7 +122,7 @@ const TODO = () => {
               className={classnames('body-content-overlay', {
                 show: mainSidebar === true
               })}
-              onClick={handleMailDetail}
+              onClick={handleTaskSidebar}
             ></div>
 
             {store ? (
@@ -141,27 +141,12 @@ const TODO = () => {
                 selectTask={selectTask}
                 reOrderTasks={reOrderTasks}
                 handleMainSidebar={handleMainSidebar}
-                handleTaskSidebar={handleMailDetail}
+                handleTaskSidebar={handleTaskSidebar}
               />
             ) : null}
 
-            <MailDetails
-              openMail={openMail}
-              dispatch={dispatch}
-              mail={store.currentMail}
-              labelColors={labelColors}
-              setOpenMail={setOpenMail}
-              // updateMails={updateMails}
-              // paginateMail={paginateMail}
-              // updateMailLabel={updateMailLabel}
-              handleMailToTrash={handleMailToTrash}
-              handleFolderUpdate={handleFolderUpdate}
-              handleLabelsUpdate={handleLabelsUpdate}
-              handleMailReadUpdate={handleMailReadUpdate}
-            // formatDateToMonthShort={formatDateToMonthShort}
-            />
-
             <TaskSidebar
+
               store={store}
               params={params}
               addTask={addTask}

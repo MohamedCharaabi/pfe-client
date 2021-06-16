@@ -3,7 +3,7 @@ import { File, Mail } from 'react-feather'
 export default [
   {
     id: 'alertsMails',
-    title: 'Mails',
+    title: 'Reclamations',
     icon: <Mail size={20} />,
     action: 'read',
     resource: 'user',

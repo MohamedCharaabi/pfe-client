@@ -70,7 +70,7 @@ const FiltredRequest = () => {
   }
 
   if (isLoading) {
-    return <span></span>
+    return <span>Loading...</span>
   }
   return (
 
@@ -78,7 +78,7 @@ const FiltredRequest = () => {
       {/* <Breadcrumbs breadCrumbTitle='Reactstrap Tables' breadCrumbParent='Forms & Tables' breadCrumbActive='Tables' /> */}
       <Row>
         <Col sm='12'>
-          <Card title='Demmandes'
+          <Card title='Requests'
             // code={tableBasic}
             noBody
           >
