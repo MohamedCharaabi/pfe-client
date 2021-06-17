@@ -30,13 +30,17 @@ const TableBasic = () => {
 
 
   }
+  if (demandes < 0) {
+    return <span></span>
+  }
+  console.log(demandes)
 
   return (
     <Table responsive>
       <thead>
         <tr>
           <th>theme</th>
-          <th>User</th>
+          <th>Nom</th>
           <th>Email</th>
           <th>Date</th>
           <th>Status</th>
@@ -44,8 +48,9 @@ const TableBasic = () => {
         </tr>
       </thead>
       <tbody>
-        {demandes.map(demmande => {
-          if (demmande.confDem !== 'yes') return null
+        {demandes.slice(0).reverse().map(demmande => {
+          if (demmande.etat === 'disactive' || demmande.etatDem === 0) return null
+
           return <tr key={demmande._id}>
             <td>
               {/* <img className='mr-75' src={angular} alt='angular' height='20' width='20' /> */}

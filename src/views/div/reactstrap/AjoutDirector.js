@@ -132,17 +132,17 @@ const AjoutDirDirector = () => {
 
                         <Col lg='3' md='6' sm='12'>
                             <FormGroup>
-                                <Label for='nameMulti'>Director Name</Label>
+                                <Label for='nameMulti'>Nom Modirateur</Label>
                                 <Input type='text' name='name' id='nameMulti'
-                                    // placeholder="director full name"
+                                    placeholder="Nom Modirateur"
                                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} />
                             </FormGroup>
                         </Col>
                         <Col lg='3' md='6' sm='12'>
                             <FormGroup>
-                                <Label for='nameMulti'>Director email</Label>
+                                <Label for='nameMulti'>Email</Label>
                                 <Input type='email' name='name' id='nameMulti'
-                                    // placeholder='director email'
+                                    placeholder='Email'
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                             </FormGroup>
                         </Col>

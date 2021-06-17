@@ -1,10 +1,10 @@
-import { File, Mail } from 'react-feather'
+import { AlertTriangle } from 'react-feather'
 
 export default [
   {
     id: 'alertsMails',
     title: 'Reclamations',
-    icon: <Mail size={20} />,
+    icon: <AlertTriangle size={20} />,
     action: 'read',
     resource: 'user',
     navLink: '/alertMails'

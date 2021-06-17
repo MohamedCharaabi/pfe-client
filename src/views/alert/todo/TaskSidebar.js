@@ -8,7 +8,7 @@ import { Editor } from 'react-draft-wysiwyg'
 import { X, Star, Trash } from 'react-feather'
 import Select, { components } from 'react-select'
 import { EditorState, ContentState } from 'draft-js'
-import { Modal, ModalBody, Button, Form, FormGroup, Input, Label, Media } from 'reactstrap'
+import { Modal, ModalBody, Button, Form, FormGroup, Input, Label, CardBody, Media } from 'reactstrap'
 
 // ** Utils
 import { isObjEmpty, selectThemeColors } from '@utils'
@@ -25,6 +25,7 @@ import img6 from '@src/assets/images/portrait/small/avatar-s-11.jpg'
 import '@styles/react/libs/editor/editor.scss'
 import '@styles/react/libs/react-select/_react-select.scss'
 import '@styles/react/libs/flatpickr/flatpickr.scss'
+import Card from 'reactstrap/lib/Card'
 
 // ** Function to capitalize the first letter of string
 const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
@@ -181,7 +182,7 @@ const TaskSidebar = props => {
     setTags([])
     setDesc('')
     setTitle('')
-    setAssignee({ value: 'pheobe', label: 'Pheobe Buffay', img: img1 })
+    setAssignee()
     setCompleted(false)
     setImportant(false)
     setDueDate(new Date())
@@ -277,8 +278,11 @@ const TaskSidebar = props => {
       )
     }
   }
-  { console.log(assignee.value) }
+  // { console.log(assignee[0]) }
 
+  // if (!assignee) {
+  //   return <span></span>
+  // }
   return (
     <Modal
 
@@ -324,8 +328,8 @@ const TaskSidebar = props => {
 
             <Input
               id='task-title1'
-              value={assignee}
-              placeholder='Title1'
+              // value={assignee[0].value}
+              // placeholder='Title1'
               className='new-todo-item-title'
             // onChange={e => setTitle(e.target.value)}
             />
@@ -352,22 +356,21 @@ const TaskSidebar = props => {
             <Label for='task-desc' className='form-label'>
               Description
             </Label>
-            <Editor
-              editorState={desc}
-              editorClassName='rounded-0'
-              toolbarClassName='rounded-0'
-              wrapperClassName='toolbar-bottom'
-              toolbar={{
-                options: ['inline', 'textAlign'],
-                inline: {
-                  inDropdown: false,
-                  options: ['bold', 'italic', 'underline']
-                }
-              }}
-              onEditorStateChange={data => setDesc(data)}
+            <Input
+              id='task-title1'
+              type="textarea"
+              // lines={5}
+              value={store.selectedTask.description}
+              placeholder='Title1'
+              className='new-todo-item-title'
+            // onChange={e => setTitle(e.target.value)}
             />
+
+
           </FormGroup>
-          <FormGroup className='my-1'>{renderFooterButtons()}</FormGroup>
+
+          {/* <FormGroup className='my-1'>{renderFooterButtons()}</FormGroup> */}
+
         </ModalBody>
       </Form>
     </Modal>

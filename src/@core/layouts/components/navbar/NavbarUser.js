@@ -42,9 +42,9 @@ const NavbarUser = props => {
       <NavbarSearch />
       {/* Cart Icon  */}
       {/* <CartDropdown /> */}
-      {
+      {/* {
         userData.role === 'admin' ? <NotificationDropdown /> : null
-      }
+      } */}
       <UserDropdown />
     </ul>
   )

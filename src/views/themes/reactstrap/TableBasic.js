@@ -5,7 +5,7 @@ import { MoreVertical, Edit, Trash } from 'react-feather'
 import { Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-
+import { handleError, handleInfo, handleSuccess } from '../../exports/SweetAlerts'
 
 const TableBasic = () => {
 
@@ -25,8 +25,8 @@ const TableBasic = () => {
 
   async function deleteTheme(id) {
     await axios.delete(`https://pfe-cims.herokuapp.com/theme/${id}`)
-      .then(res => loadThemes())
-      .catch(error => alert(error.message))
+      .then(res => handleSuccess({ props: { title: 'Theme Supprimer', click: loadThemes } }))
+      .catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
 
 
   }
@@ -66,14 +66,17 @@ const TableBasic = () => {
                   <MoreVertical size={15} />
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <Link >
+                  <Link to={`/editTheme/${theme._id}`}>
                     <DropdownItem >
-                      <Edit className='mr-50' size={15} /> <span className='align-middle'>Edit Theme</span>
+                      <Edit className='mr-50' size={15} /> <span className='align-middle'>Modifier Theme</span>
                     </DropdownItem>
                   </Link>
 
-                  <DropdownItem >
-                    <Trash className='mr-50' size={15} /> <span className='align-middle'>Delete Theme</span>
+                  <DropdownItem onClick={e => {
+                    e.preventDefault()
+                    deleteTheme(theme._id)
+                  }}>
+                    <Trash className='mr-50' size={15} /> <span className='align-middle'>Supprimer Theme</span>
                   </DropdownItem>
 
                 </DropdownMenu>

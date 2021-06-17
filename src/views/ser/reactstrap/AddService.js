@@ -117,7 +117,7 @@ const AddService = () => {
     return (
         <Card>
             <CardHeader>
-                <CardTitle tag='h4'>ADD Service</CardTitle>
+                <CardTitle tag='h4'>Ajout Service</CardTitle>
             </CardHeader>
 
             <CardBody>
@@ -184,8 +184,8 @@ const AddService = () => {
 
                         <Col lg='3' md='6' sm='12'>
                             <FormGroup>
-                                <Label for='nameMulti'>First Name</Label>
-                                <Input type='text' name='name' id='nameMulti' placeholder='First Name'
+                                <Label for='nameMulti'>Nom Service</Label>
+                                <Input type='text' name='name' id='nameMulti' placeholder='Nom Service'
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
                             </FormGroup>
                         </Col>
@@ -197,10 +197,10 @@ const AddService = () => {
                             <FormGroup className='d-flex mb-0'>
                                 <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => { e.preventDefault(); submit() }}>
                                     Submit
-                </Button.Ripple>
+                                </Button.Ripple>
                                 <Button.Ripple outline color='secondary' type='reset' >
                                     Reset
-                </Button.Ripple>
+                                </Button.Ripple>
                             </FormGroup>
                         </Col>
 

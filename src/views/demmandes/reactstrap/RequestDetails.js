@@ -127,7 +127,7 @@ const RequestDetails = () => {
                             toggle('1')
                         }} >
                         Details
-                 </NavLink>
+                    </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink
@@ -137,19 +137,19 @@ const RequestDetails = () => {
                         }}
                     >
                         History
-          </NavLink>
+                    </NavLink>
                 </NavItem>
             </Nav>
             <TabContent className='py-50' activeTab={active} >
                 <TabPane tabId='1'>
 
                     <ListGroup flush>
-                        <ListGroupItem>Name : {request.nomDem}</ListGroupItem>
-                        <ListGroupItem>LastName: {request.prenomDem}</ListGroupItem>
+                        <ListGroupItem>Nom : {request.nomDem}</ListGroupItem>
+                        <ListGroupItem>Prenom: {request.prenomDem}</ListGroupItem>
                         <ListGroupItem>Email: {request.emailDem}</ListGroupItem>
                         <ListGroupItem>Theme: {request.themeDem}</ListGroupItem>
                         <ListGroupItem>Status: {request.name}</ListGroupItem>
-                        <ListGroupItem>Created At: {request.dateDem}</ListGroupItem>
+                        <ListGroupItem>Date: {request.dateDem}</ListGroupItem>
                         <ListGroupItem>Department: {request.dep_name}</ListGroupItem>
                         <ListGroupItem>Direction: {request.dir_name}</ListGroupItem>
                         <ListGroupItem>Dividion: {request.div_name}</ListGroupItem>
@@ -162,7 +162,7 @@ const RequestDetails = () => {
                         <CardHeader>
                             <div className='d-flex align-items-center'>
                                 <List className='user-timeline-title-icon' />
-                                <CardTitle tag='h4'>Request History</CardTitle>
+                                <CardTitle tag='h4'>Historique</CardTitle>
                             </div>
                         </CardHeader>
                         <CardBody>

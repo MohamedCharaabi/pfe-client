@@ -100,7 +100,7 @@ const ExpandableTable = ({ data }) => {
 // ** Table Common Column
 export const columns = [
   {
-    name: 'Name',
+    name: 'Nom',
     selector: 'theme',
     sortable: true,
     minWidth: '250px',
@@ -119,7 +119,7 @@ export const columns = [
     )
   },
   {
-    name: 'Creator',
+    name: 'créateur',
     selector: 'creator',
     sortable: true,
     minWidth: '250px'

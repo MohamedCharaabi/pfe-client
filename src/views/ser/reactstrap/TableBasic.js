@@ -47,7 +47,9 @@ const TableBasic = () => {
           <th>Division</th>
           <th>Direction</th>
           <th>Service</th>
-          <th>Director</th>
+          <th>Modirateur</th>
+          <th>Actions</th>
+
         </tr>
       </thead>
       <tbody>

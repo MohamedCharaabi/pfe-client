@@ -152,14 +152,14 @@ const GeneralTabs = ({ data }) => {
           <Button.Ripple color='secondary' size='sm' outline>
             Reset
           </Button.Ripple>
-          <p>Allowed JPG, GIF or PNG. Max size of 800kB</p>
+          {/* <p>Allowed JPG, GIF or PNG. Max size of 800kB</p> */}
         </Media>
       </Media>
       <Form className='mt-2' onSubmit={handleSubmit(onSubmit)}>
         <Row>
           <Col sm='6'>
             <FormGroup>
-              <Label for='username'>Username</Label>
+              <Label for='username'>Nom</Label>
               <Controller
 
                 control={control}
@@ -172,7 +172,7 @@ const GeneralTabs = ({ data }) => {
                 // as={Input}
                 id='username'
                 name='username'
-                placeholder='Username'
+                placeholder='Nom'
                 // innerRef={register({ required: true })}
                 // onChange={e => setFormData({ ...formData, fullName: e.target.value })}
                 className={classnames({
@@ -206,11 +206,10 @@ const GeneralTabs = ({ data }) => {
           </Col>
           <Col className='mt-2' sm='12'>
             <Button.Ripple type='submit' className='mr-1' color='primary'>
-              Save changes
+              Sauvgarder
             </Button.Ripple>
             <Button.Ripple color='secondary' outline>
-              Cancel
-            </Button.Ripple>
+              Annuler            </Button.Ripple>
           </Col>
         </Row>
       </Form>

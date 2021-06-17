@@ -137,7 +137,7 @@ const TableBasic = () => {
           <th>Name</th>
           <th>Direction</th>
           <th>Department</th>
-          <th>Director</th>
+          <th>Modirateur</th>
           <th>Actions</th>
         </tr>
       </thead>

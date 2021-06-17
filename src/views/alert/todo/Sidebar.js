@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { Button, ListGroup, ListGroupItem } from 'reactstrap'
-import { Mail, Star, Check, Trash, Plus } from 'react-feather'
+import { AlertTriangle } from 'react-feather'
 
 const TodoSidebar = props => {
   // ** Props
@@ -45,9 +45,9 @@ const TodoSidebar = props => {
         <div className='sidebar-content todo-sidebar'>
           <div className='todo-app-menu'>
             <div className='add-task'>
-              <Button.Ripple color='primary' onClick={handleAddClick} block>
+              {/* <Button.Ripple color='primary' onClick={handleAddClick} block>
                 Envoyer
-              </Button.Ripple>
+              </Button.Ripple> */}
             </div>
             <PerfectScrollbar className='sidebar-menu-list' options={{ wheelPropagation: false }}>
               <ListGroup tag='div' className='list-group-filters'>
@@ -58,8 +58,8 @@ const TodoSidebar = props => {
                   active={params.filter === '' && params.tag === ''}
                   onClick={() => handleFilter('')}
                 >
-                  <Mail className='mr-75' size={18} />
-                  <span className='align-middle'>Mails</span>
+                  <AlertTriangle className='mr-75' size={18} />
+                  <span className='align-middle'>Reclamations</span>
                 </ListGroupItem>
                 {/* <ListGroupItem
                   tag={Link}

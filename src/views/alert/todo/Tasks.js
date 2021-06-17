@@ -186,7 +186,7 @@ const Tasks = props => {
                 <Search className='text-muted' size={14} />
               </InputGroupText>
             </InputGroupAddon>
-            <Input placeholder='Search task' value={query} onChange={handleFilter} />
+            <Input placeholder='Reclamations' value={query} onChange={handleFilter} />
           </InputGroup>
         </div>
         <UncontrolledDropdown>

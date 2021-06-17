@@ -48,6 +48,7 @@ const TableBasic = () => {
           <th>Nom</th>
           <th>Department</th>
           <th>Modirateur</th>
+          <th>Actions</th>
 
         </tr>
       </thead>

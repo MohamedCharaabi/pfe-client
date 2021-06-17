@@ -56,7 +56,7 @@ const EditTheme = () => {
 
     async function submit() {
         await axios.patch(`https://pfe-cims.herokuapp.com/theme/${id}`, formData)
-            .then(res => handleSuccess({ props: { title: 'Theme updated successfully' } })
+            .then(res => handleSuccess({ props: { title: 'Theme Modifier' } })
                 .catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } })))
     }
 
@@ -98,10 +98,10 @@ const EditTheme = () => {
                             <FormGroup className='d-flex mb-0'>
                                 <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => { e.preventDefault(); submit() }}>
                                     Submit
-                </Button.Ripple>
+                                </Button.Ripple>
                                 <Button.Ripple outline color='secondary' type='reset' >
                                     Reset
-                </Button.Ripple>
+                                </Button.Ripple>
                             </FormGroup>
                         </Col>
 

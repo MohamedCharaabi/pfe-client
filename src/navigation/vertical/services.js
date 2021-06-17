@@ -31,7 +31,7 @@ export default [
 
       {
         id: 'dtAdvance',
-        title: 'Ajout Directeur',
+        title: 'Ajout Modirateur',
         icon: <Circle size={12} />,
         navLink: '/ser/ajoutdirector',
         action: 'read',

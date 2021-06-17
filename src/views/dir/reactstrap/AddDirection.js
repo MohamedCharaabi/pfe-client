@@ -52,7 +52,7 @@ const AddDirection = () => {
         })
         setDepOptions(options)
     }
-    async function submit() { 
+    async function submit() {
         // event.preventDefault()
         console.log(formData)
         await axios.post("https://pfe-cims.herokuapp.com/dir", formData)
@@ -69,7 +69,7 @@ const AddDirection = () => {
 
         <Card>
             <CardHeader>
-                <CardTitle tag='h4'>ADD Direction</CardTitle>
+                <CardTitle tag='h4'>Ajout Direction</CardTitle>
             </CardHeader>
 
             <CardBody>
@@ -98,8 +98,8 @@ const AddDirection = () => {
 
                         <Col lg='3' md='6' sm='12'>
                             <FormGroup>
-                                <Label for='nameMulti'>First Name</Label>
-                                <Input type='text' name='name' id='nameMulti' placeholder='First Name'
+                                <Label for='nameMulti'>Nom Direction</Label>
+                                <Input type='text' name='name' id='nameMulti' placeholder='Nom Direction'
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
                             </FormGroup>
                         </Col>
@@ -111,10 +111,10 @@ const AddDirection = () => {
                             <FormGroup className='d-flex mb-0'>
                                 <Button.Ripple className='mr-1' color='primary' type='submit' onClick={e => { e.preventDefault(); submit() }}>
                                     Submit
-                </Button.Ripple>
+                                </Button.Ripple>
                                 <Button.Ripple outline color='secondary' type='reset' >
                                     Reset
-                </Button.Ripple>
+                                </Button.Ripple>
                             </FormGroup>
                         </Col>
 

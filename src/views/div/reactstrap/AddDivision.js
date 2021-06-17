@@ -87,7 +87,7 @@ const AddDivision = () => {
     return (
         <Card>
             <CardHeader>
-                <CardTitle tag='h4'>ADD Division</CardTitle>
+                <CardTitle tag='h4'>Ajout Division</CardTitle>
             </CardHeader>
 
             <CardBody>
@@ -135,8 +135,8 @@ const AddDivision = () => {
 
                         <Col lg='3' md='6' sm='12'>
                             <FormGroup>
-                                <Label for='nameMulti'>Name</Label>
-                                <Input type='text' name='name' id='nameMulti' placeholder='Division Name'
+                                <Label for='nameMulti'>Nom Divisions</Label>
+                                <Input type='text' name='name' id='nameMulti' placeholder='Nom Division'
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
                             </FormGroup>
                         </Col>

@@ -61,7 +61,7 @@ const PasswordTabContent = () => {
         <Col sm='6'>
           <FormGroup>
             <InputPasswordToggle
-              label='Old Password'
+              label='Ancien Password'
               htmlFor='old-password'
               name='old-password'
               onChange={e => setFormData({ ...formData, oldpass: e.target.value })}
@@ -78,7 +78,7 @@ const PasswordTabContent = () => {
         <Col sm='6'>
           <FormGroup>
             <InputPasswordToggle
-              label='New Password'
+              label='Nouveau Password'
               htmlFor='new-password'
               name='new-password'
               onChange={e => setFormData({ ...formData, newPass: e.target.value })}
@@ -93,7 +93,7 @@ const PasswordTabContent = () => {
         <Col sm='6'>
           <FormGroup>
             <InputPasswordToggle
-              label='Retype New Password'
+              label='Retype Password'
               htmlFor='retype-new-password'
               name='retype-new-password'
               onChange={e => setFormData({ ...formData, newPass: e.target.value })}
@@ -107,11 +107,10 @@ const PasswordTabContent = () => {
         </Col>
         <Col className='mt-1' sm='12'>
           <Button.Ripple type='submit' className='mr-1' color='primary'>
-            Save changes
+            Sauvgarder
           </Button.Ripple>
           <Button.Ripple color='secondary' outline>
-            Cancel
-          </Button.Ripple>
+            Annuler          </Button.Ripple>
         </Col>
       </Row>
     </Form>

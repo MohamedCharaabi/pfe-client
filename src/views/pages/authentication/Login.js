@@ -60,7 +60,8 @@ const Login = props => {
       //   .login({ email, password })
       await axios.post('https://pfe-cims.herokuapp.com/new/login', { email, password }, {
         headers: {
-          'Content-Type': 'Application/json'
+          'Content-Type': 'Application/json',
+          'Access-Control-Allow-Origin': '*'
         },
         withCredentials: true
       })
