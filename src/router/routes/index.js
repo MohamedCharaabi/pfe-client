@@ -22,7 +22,7 @@ import AlertEmails from './Alerts'
 const TemplateTitle = 'Pfe CIMS'
 
 // ** Default Route
-const DefaultRoute = '/dashboard/ecommerce'
+const DefaultRoute = '/demmandes/reactstrap'
 
 // ** Merge Routes
 const Routes = [

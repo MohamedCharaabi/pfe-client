@@ -54,19 +54,21 @@ const ModalHeader = props => {
 
   return (
     <div className='modal-header d-flex align-items-center justify-content-between mb-1'>
-      <h5 className='modal-title'>{children}</h5>
+      <h5 className='modal-title'>
+        {/* {children} */}
+      </h5>
       <div className='todo-item-action d-flex align-items-center'>
-        {store && !isObjEmpty(store.selectedTask) ? (
+        {/* {store && !isObjEmpty(store.selectedTask) ? (
           <Trash className='cursor-pointer mt-25' size={16} onClick={() => handleDeleteTask()} />
-        ) : null}
+        ) : null} */}
         <span className='todo-item-favorite cursor-pointer mx-75'>
-          <Star
+          {/* <Star
             size={16}
             onClick={() => setImportant(!important)}
             className={classnames({
               'text-warning': important === true
             })}
-          />
+          /> */}
         </span>
         <X className='font-weight-normal mt-25' size={16} onClick={handleTaskSidebar} />
       </div>

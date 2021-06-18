@@ -21,7 +21,7 @@ import client from './client'
 //  'OLD EXPORT'  export default [...dashboards, ...apps, ...pages, ...uiElements, ...forms, ...tables, ...chartsAndMaps, ...others]
 export default
     [
-        ...dashboards,
+        // ...dashboards,
         ...alertMails,
         // ...pages,
         // ...apps,

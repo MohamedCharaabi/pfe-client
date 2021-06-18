@@ -68,7 +68,7 @@ const TableBasic = () => {
               })}
             </td>
             <td>
-              <UncontrolledDropdown>
+              {/* <UncontrolledDropdown>
                 <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
                   <MoreVertical size={15} />
                 </DropdownToggle>
@@ -82,7 +82,18 @@ const TableBasic = () => {
                     <Trash className='mr-50' size={15} /> <span className='align-middle'>Delete</span>
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> */}
+
+              <div className='d-flex'>
+                <Link to={`/editDirection/${direction._id}`}>
+                  <Edit size={20} color={'green'} className='mr-50' />
+                </Link>
+
+                <Trash size={20} color={'red'} onClick={e => {
+                  e.preventDefault()
+                  deleteDirection(direction._id)
+                }} />
+              </div>
             </td>
           </tr>
 

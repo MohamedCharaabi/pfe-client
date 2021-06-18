@@ -40,7 +40,7 @@ const StandartProposition = () => {
       .then(async (res) => {
         // load()
         await axios.delete(`https://pfe-cims.herokuapp.com/requesttheme/${id}`)
-          .then(res => handleSuccess({ props: { title: 'Theme Created Succesfuly', click: loadThemes } }))
+          .then(res => handleSuccess({ props: { title: 'Theme accepter', click: loadThemes } }))
       })
       .catch(error => {
         handleError({ props: { title: error.response.data.message } }

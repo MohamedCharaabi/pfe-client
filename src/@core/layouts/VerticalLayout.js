@@ -121,8 +121,7 @@ const VerticalLayout = props => {
   return (
     <div
       className={classnames(
-        `wrapper vertical-layout ${navbarWrapperClasses[navbarType] || 'navbar-floating'} ${
-          footerClasses[footerType] || 'footer-static'
+        `wrapper vertical-layout ${navbarWrapperClasses[navbarType] || 'navbar-floating'} ${footerClasses[footerType] || 'footer-static'
         }`,
         {
           // Modern Menu
@@ -175,7 +174,7 @@ const VerticalLayout = props => {
       ></div>
       {/* Vertical Nav Menu Overlay */}
 
-      {themeConfig.layout.customizer === true ? (
+      {/* {themeConfig.layout.customizer === true ? (
         <Customizer
           skin={skin}
           setSkin={setSkin}
@@ -199,7 +198,7 @@ const VerticalLayout = props => {
           setTransition={props.setTransition}
           themeConfig={themeConfig}
         />
-      ) : null}
+      ) : null} */}
       <footer
         className={classnames(`footer footer-light ${footerClasses[footerType] || 'footer-static'}`, {
           'd-none': footerType === 'hidden'

@@ -205,7 +205,7 @@ const DataTableWithButtons = () => {
           <div className='d-flex mt-md-0 mt-1'>
             <Button className='ml-2' color='primary' onClick={handleModal}>
               <Plus size={15} />
-              <span className='align-middle ml-50'>Ajout Theme</span>
+              <span className='align-middle ml-50'>Proposer Theme</span>
             </Button>
           </div>
         </Row>

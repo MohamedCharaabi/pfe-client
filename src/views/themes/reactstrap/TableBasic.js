@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import { MoreVertical, Edit, Trash } from 'react-feather'
+import { MoreVertical, Edit, Trash, Check } from 'react-feather'
 import { Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
@@ -61,7 +61,7 @@ const TableBasic = () => {
             </td>
 
             <td>
-              <UncontrolledDropdown>
+              {/* <UncontrolledDropdown>
                 <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
                   <MoreVertical size={15} />
                 </DropdownToggle>
@@ -81,6 +81,17 @@ const TableBasic = () => {
 
                 </DropdownMenu>
               </UncontrolledDropdown>
+             */}
+              <div className='d-flex'>
+                <Link to={`/editTheme/${theme._id}`}>
+                  <Check size={20} color={'green'} className='mr-50' />
+                </Link>
+
+                <Trash size={20} color={'red'} onClick={e => {
+                  e.preventDefault()
+                  deleteTheme(theme._id)
+                }} />
+              </div>
             </td>
 
           </tr>

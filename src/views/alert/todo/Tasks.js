@@ -136,7 +136,7 @@ const Tasks = props => {
                       <span className='todo-title'>{item.title}</span>
                     </div>
                     <div className='todo-item-action mt-lg-0 mt-50'>
-                      {item.tags.length ? <div className='badge-wrapper mr-1'>{renderTags(item.tags)}</div> : null}
+                      {/* {item.tags.length ? <div className='badge-wrapper mr-1'>{renderTags(item.tags)}</div> : null} */}
                       {item.dueDate ? (
                         <small className='text-nowrap text-muted mr-1'>
                           {/* {new Date(item.dueDate).toLocaleString('default', { month: 'short' })}{' '}

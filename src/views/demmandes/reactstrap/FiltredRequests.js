@@ -31,7 +31,7 @@ const FiltredRequest = () => {
     await axios.get(`https://pfe-cims.herokuapp.com/request/filter/${user.rolePer}/${user.Dep}/${user.Dir || 0}/${user.Div || 0}/${user.Ser || 0}`)
       .then(res => {
         setDemandes(res.data)
-        // console.log(res.data)
+        console.log(res.data)
         setIsLoading(false)
       }).catch(error => alert(`errror ==> ${error.message}`))
   }
@@ -50,7 +50,7 @@ const FiltredRequest = () => {
   }
   async function acceptDemande(id, etatDem, name, demmande) {
     await axios.patch(`https://pfe-cims.herokuapp.com/request/accept/${id}`, { etatDem, name, demmande, message: `accepted by ${userData.fullName}` })
-      .then(res => handleSuccess({ props: { title: 'Request Accepted' } }))
+      .then(res => handleSuccess({ props: { title: 'Request Accepted', click: loadDemandes } }))
       .catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
   }
   async function refuseDemande(id, rmsqDem) {
@@ -89,13 +89,13 @@ const FiltredRequest = () => {
                   <th>User</th>
                   <th>Email</th>
                   <th>Date</th>
-                  <th>Status</th>
+                  {/* <th>Status</th> */}
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {demandes.map(demmande => {
-                  if (demmande.confDem !== 'yes') return null
+                  if (demmande.etat === 'disactive' || demmande.etatDem === 0) return null
                   return < tr key={demmande._id} >
                     <td>
                       {/* <img className='mr-75' src={angular} alt='angular' height='20' width='20' /> */}
@@ -112,7 +112,7 @@ const FiltredRequest = () => {
             </Badge> */}
                       {demmande.dateDem}
                     </td>
-                    <td>{demmande.etatDem}</td>
+                    {/* <td>{demmande.etatDem}</td> */}
                     <td>
                       <UncontrolledDropdown>
                         <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>

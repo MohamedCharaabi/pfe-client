@@ -39,7 +39,7 @@ const TableBasic = () => {
     await axios.delete(`https://pfe-cims.herokuapp.com/dep/${id}`)
       .then(res => {
         // loadDepartments() 
-        handleSuccess({ props: { title: 'Department updated successfully', click: loadDepartments } })
+        handleSuccess({ props: { title: 'Department supprimer', click: loadDepartments } })
       })
       .catch(error => handleError({ props: { title: error.message } }))
 
@@ -67,13 +67,13 @@ const TableBasic = () => {
             </td>
             <td>
               {personnels.map(personnel => {
-                if (personnel.Dep === department._id && personnel.rolePer === 'dep') {
+                if (personnel.Dep === department.name && personnel.rolePer === 'dep') {
                   return personnel.fullName
                 }
               })}
             </td>
             <td>
-              <UncontrolledDropdown>
+              {/* <UncontrolledDropdown>
                 <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
                   <MoreVertical size={15} />
                 </DropdownToggle>
@@ -88,7 +88,18 @@ const TableBasic = () => {
                     <Trash className='mr-50' size={15} /> <span className='align-middle'>Delete</span>
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> */}
+
+              <div className='d-flex'>
+                <Link to={`editDepartment/${department._id}`}>
+                  <Edit size={20} color={'green'} className='mr-50' />
+                </Link>
+
+                <Trash size={20} color={'red'} onClick={e => {
+                  e.preventDefault()
+                  deleteDepartment(department._id)
+                }} />
+              </div>
             </td>
           </tr>
         })

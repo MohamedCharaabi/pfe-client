@@ -70,19 +70,19 @@ const TableBasic = () => {
             <td>{demmande.name}</td>
 
             <td>
-              <UncontrolledDropdown>
+              {/* <UncontrolledDropdown>
                 <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
                   <MoreVertical size={15} />
                 </DropdownToggle>
-                <DropdownMenu right>
-                  <Link to={`/demmandes/details/${demmande._id}`}>
-                    <DropdownItem >
-                      <Edit className='mr-50' size={15} /> <span className='align-middle'>Show Details</span>
-                    </DropdownItem>
-                  </Link>
-
+                <DropdownMenu right> */}
+              <Link to={`/demmandes/details/${demmande._id}`}>
+                <DropdownItem >
+                  <Edit className='mr-50' size={15} /> <span className='align-middle'>Show Details</span>
+                </DropdownItem>
+              </Link>
+              {/* 
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> */}
             </td>
 
           </tr>
