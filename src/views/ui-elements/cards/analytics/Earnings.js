@@ -12,6 +12,7 @@ const Earnings = ({ success, props }) => {
     dataLabels: {
       enabled: false
     },
+
     legend: { show: false },
     comparedResult: [2, -3, 8],
     labels: props.map(th => th._id),
@@ -86,12 +87,12 @@ const Earnings = ({ success, props }) => {
         <Row>
           <Col xs='6'>
             <CardTitle className='mb-1'>Top Themes</CardTitle>
-            <div className='font-small-2'>Ce mois</div>
+            {/* <div className='font-small-2'>Ce mois</div>
             <h5 className='mb-1'>$4055.56</h5>
             <CardText className='text-muted font-small-2'>
               <span className='font-weight-bolder'>68.2%</span>
               <span> more earnings than last month.</span>
-            </CardText>
+            </CardText> */}
           </Col>
           <Col xs='6'>
             <Chart options={options} series={props.map(th => th.count)} type='donut' height={120} />

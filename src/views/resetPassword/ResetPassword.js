@@ -87,25 +87,25 @@ const ResetPassword
                     </g>
                   </g>
                 </svg>
-                <h2 className='brand-text text-primary ml-1'>Vuexy</h2>
+                <h2 className='brand-text text-primary ml-1'>PFE-CIMS</h2>
               </Link>
               <CardTitle tag='h4' className='mb-1'>
                 Reset Password 🔒
-            </CardTitle>
-              <CardText className='mb-2'>Your new password must be different from previously used passwords</CardText>
+              </CardTitle>
+              <CardText className='mb-2'>Votre nouveau mot de passe doit être différent des mots de passe précédemment utilisés</CardText>
               <Form className='auth-reset-password-form mt-2' onSubmit={e => e.preventDefault()}>
                 <FormGroup>
                   <Label className='form-label' for='new-password'>
-                    New Password
-                </Label>
+                    nouveau mot de passe
+                  </Label>
                   <InputPassword className='input-group-merge' id='new-password' autoFocus
                     onChange={(e) => setFormData({ ...formData, newPass: e.target.value })}
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label className='form-label' for='confirm-password'>
-                    Confirm Password
-                </Label>
+                    Confirmer mot de passe
+                  </Label>
                   <InputPassword className='input-group-merge' id='confirm-password'
                     onChange={(e) => setFormData({ ...formData, confPass: e.target.value })}
                   />
@@ -116,13 +116,13 @@ const ResetPassword
                     submit()
                   }}
                   block>
-                  Set New Password
-              </Button.Ripple>
+                  Changer
+                </Button.Ripple>
               </Form>
               <p className='text-center mt-2'>
                 <Link to='/pages/login-v1'>
                   <ChevronLeft className='mr-25' size={14} />
-                  <span className='align-middle'>Back to login</span>
+                  <span className='align-middle'>Retour au login</span>
                 </Link>
               </p>
             </CardBody>

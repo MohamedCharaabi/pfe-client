@@ -71,7 +71,7 @@ const AjoutDirector = () => {
                     "Access-Control-Allow-Origin": "*"
                 }
             })
-            .then(async (res) => handleSuccess({ props: { title: 'Department updated successfully' } })
+            .then(async (res) => handleSuccess({ props: { title: 'Moderateur Ajouter!!' } })
             ).catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
     }
 

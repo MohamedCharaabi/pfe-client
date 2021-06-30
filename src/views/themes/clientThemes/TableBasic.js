@@ -5,6 +5,7 @@ import { MoreVertical, Edit, Trash } from 'react-feather'
 import { Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
+import Avatar from '@components/avatar'
 
 
 const TableBasic = () => {
@@ -45,6 +46,8 @@ const TableBasic = () => {
         {themes.map(theme => {
           return <tr key={theme._id}>
             <td>
+              <Avatar img={theme.logo || defaultLogo} imgHeight='30' imgWidth='30' />
+
               {/* <img className='mr-75' src={angular} alt='angular' height='20' width='20' /> */}
               <span className='align-middle font-weight-bold'>{theme.theme}</span>
             </td>

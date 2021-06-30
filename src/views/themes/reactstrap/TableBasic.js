@@ -6,6 +6,10 @@ import { Table, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import { handleError, handleInfo, handleSuccess } from '../../exports/SweetAlerts'
+import Avatar from '@components/avatar'
+
+import defaultLogo from '@src/assets/images/themeLogo.png'
+
 
 const TableBasic = () => {
 
@@ -46,8 +50,10 @@ const TableBasic = () => {
         {themes.map(theme => {
           return <tr key={theme._id}>
             <td>
-              {/* <img className='mr-75' src={angular} alt='angular' height='20' width='20' /> */}
-              <span className='align-middle font-weight-bold'>{theme.theme}</span>
+              {/* <img className='mr-75' src={theme.logo} height='20' width='20' /> */}
+              <Avatar img={theme.logo || defaultLogo} imgHeight='30' imgWidth='30' />
+
+              <span className='align-middle font-weight-bold ml-1' >{theme.theme}</span>
             </td>
             <td>
               {/* <AvatarGroup data={avatarGroupData1} /> */}
@@ -84,7 +90,7 @@ const TableBasic = () => {
              */}
               <div className='d-flex'>
                 <Link to={`/editTheme/${theme._id}`}>
-                  <Check size={20} color={'green'} className='mr-50' />
+                  <Edit size={20} color={'green'} className='mr-50' />
                 </Link>
 
                 <Trash size={20} color={'red'} onClick={e => {

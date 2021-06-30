@@ -46,31 +46,33 @@ const EcommerceDashboard = () => {
     <div id='dashboard-ecommerce'>
       <Row className='match-height'>
         <Col xl='4' md='6' xs='12'>
-          <CardMedal />
+          {/* <CardMedal /> */}
+          <Earnings success={colors.success.main} props={statData.topTheme} />
+
         </Col>
         <Col xl='8' md='6' xs='12'>
           <StatsCard cols={{ xl: '3', sm: '6' }} props={statData.levelsCount} />
         </Col>
       </Row>
       <Row className='match-height'>
-        <Col lg='4' md='12'>
-          <Row className='match-height'>
-            <Col lg='6' md='3' xs='6'>
+        {/* <Col lg='4' md='12'>
+          <Row className='match-height'> */}
+        {/* <Col lg='6' md='3' xs='6'>
               <OrdersBarChart warning={colors.warning.main} />
-            </Col>
-            <Col lg='6' md='3' xs='6'>
-              <ProfitLineChart info={colors.info.main} props={statData.monthRequest} />
-            </Col>
-            <Col lg='12' md='6' xs='12'>
+            </Col> */}
+        <Col lg='12' md='8'>
+          <ProfitLineChart info={colors.info.main} props={statData.topThemeMonth} />
+        </Col>
+        {/* <Col lg='12' md='6' xs='12'>
               <Earnings success={colors.success.main} props={statData.topTheme} />
-            </Col>
-          </Row>
-        </Col>
-        <Col lg='8' md='12'>
+            </Col> */}
+        {/* </Row>
+        </Col> */}
+        {/* <Col lg='8' md='12'>
           <RevenueReport primary={colors.primary.main} warning={colors.warning.main} />
-        </Col>
+        </Col> */}
       </Row>
-      <Row className='match-height'>
+      {/* <Row className='match-height'>
         <Col lg='8' xs='12'>
           <CompanyTable />
         </Col>
@@ -87,6 +89,7 @@ const EcommerceDashboard = () => {
           <CardTransactions />
         </Col>
       </Row>
+    */}
     </div>
   )
 }

@@ -22,7 +22,8 @@ import {
   FormGroup,
   Label,
   CustomInput,
-  Button
+  Button,
+  Alert
 } from 'reactstrap'
 
 import '@styles/base/pages/page-auth.scss'
@@ -49,8 +50,9 @@ const Login = props => {
   const history = useHistory()
   const [email, setEmail] = useState('medch@yahoo.fr')
   const [password, setPassword] = useState('12345')
-
   const { register, errors, handleSubmit } = useForm()
+  const [alert, setALert] = useState(false)
+  const [loginError, setLoginError] = useState('')
   const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg',
     source = require(`@src/assets/images/pages/${illustration}`).default
 
@@ -84,7 +86,10 @@ const Login = props => {
           //   { transition: Slide, hideProgressBar: true, autoClose: 2000 }
           // )
         })
-        .catch(err => alert(`error => ${err.message}`))
+        .catch(err => {
+          console.log(err)
+          setLoginError(err.message)
+        })
     }
   }
 
@@ -102,32 +107,35 @@ const Login = props => {
         </Col>
         <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
           <Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
-            {/* <CardTitle tag='h2' className='font-weight-bold mb-1'>
-              Welcome to PFE-CIMS! 👋
-            </CardTitle>
-            <CardText className='mb-2'>Please sign-in to your account and start the adventure</CardText>
-            */}
+
+            <Alert color="danger" className='reactstarp_alert' isOpen={alert}>
+              {errors.loginemail && errors.loginemail.type === "required" && (
+                <div className="error">Email requis</div>)}
+              {errors.password && errors.password.type === "required" && (
+                <div className="error">Mot de passe requis</div>)}
+              {loginError}
+            </Alert>
             <Form className='auth-login-form mt-2' onSubmit={handleSubmit(onSubmit)}>
               <FormGroup>
-                <Label className='form-label' for='login-email'>
+                <Label className='form-label' for='loginemail'>
                   Email
                 </Label>
                 <Input
                   autoFocus
                   type='email'
                   value={email}
-                  id='login-email'
-                  name='login-email'
+                  id='loginemail'
+                  name='loginemail'
                   placeholder='john@example.com'
                   onChange={e => setEmail(e.target.value)}
-                  className={classnames({ 'is-invalid': errors['login-email'] })}
+                  className={classnames({ 'is-invalid': errors['loginemail'] })}
                   innerRef={register({ required: true, validate: value => value !== '' })}
                 />
               </FormGroup>
               <FormGroup>
                 <div className='d-flex justify-content-between'>
-                  <Label className='form-label' for='login-password'>
-                    Password
+                  <Label className='form-label' for='password'>
+                    Mot de passe
                   </Label>
                   <Link to='/forgot-password'>
                     <small>Mot de passe oublié?</small>
@@ -135,19 +143,19 @@ const Login = props => {
                 </div>
                 <InputPasswordToggle
                   value={password}
-                  id='login-password'
-                  name='login-password'
+                  id='password'
+                  name='password'
                   className='input-group-merge'
                   onChange={e => setPassword(e.target.value)}
-                  className={classnames({ 'is-invalid': errors['login-password'] })}
-                  innerRef={register({ required: true, validate: value => value !== '' })}
+                  className={classnames({ 'is-invalid': errors['password'] })}
+                  innerRef={register({ required: true, minLength: 6, validate: value => value !== '' })}
                 />
               </FormGroup>
               <FormGroup>
                 {/* <CustomInput type='checkbox' className='custom-control-Primary' id='remember-me' label='Remember Me' /> */}
               </FormGroup>
               <Button.Ripple type='submit' color='primary' block>
-                Sign in
+                Connexion
               </Button.Ripple>
             </Form>
           </Col>

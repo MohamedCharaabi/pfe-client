@@ -8,6 +8,7 @@ import { MoreVertical, Edit, FileText, Archive, Trash } from 'react-feather'
 import { Link } from 'react-router-dom'
 import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { handleError, handleSuccess } from '../../exports/SweetAlerts'
+import defaultLogo from '@src/assets/images/themeLogo.png'
 
 // ** Vars
 const states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary']
@@ -112,6 +113,8 @@ export const columns = [
           <Avatar img={require(`@src/assets/images/portrait/small/avatar-s-${row.avatar}`).default} />
         )} */}
         <div className='user-info text-truncate ml-1'>
+          <Avatar img={row.logo || defaultLogo} imgHeight='30' imgWidth='30' />
+
           <span className='d-block font-weight-bold text-truncate'>{row.theme}</span>
           {/* <small>{row.post}</small> */}
         </div>

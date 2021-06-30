@@ -49,12 +49,12 @@ const FiltredRequest = () => {
 
   }
   async function acceptDemande(id, etatDem, name, demmande) {
-    await axios.patch(`https://pfe-cims.herokuapp.com/request/accept/${id}`, { etatDem, name, demmande, message: `accepted by ${userData.fullName}` })
+    await axios.patch(`https://pfe-cims.herokuapp.com/request/accept/${id}`, { etatDem, name, demmande, message: `accepter par ${userData.fullName}` })
       .then(res => handleSuccess({ props: { title: 'Request Accepted', click: loadDemandes } }))
       .catch(error => handleError({ props: { title: 'An Error aquired', text: error.message } }))
   }
   async function refuseDemande(id, rmsqDem) {
-    await axios.patch(`https://pfe-cims.herokuapp.com/request/refuse/${id}`, { rmsqDem, message: `refused by ${userData.fullName}` })
+    await axios.patch(`https://pfe-cims.herokuapp.com/request/refuse/${id}`, { rmsqDem, message: `refuser par ${userData.fullName}` })
       .then(res => {
         handleSuccess({ props: { title: 'Request Refussed' } })
         setModal(!modal)
